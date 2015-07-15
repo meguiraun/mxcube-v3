@@ -1,0 +1,12 @@
+<equipment class="Resolution">
+  
+  <device hwrid="/spec_mxCuBE/detm" role="detm"/>
+  
+  <device hwrid="/spec_mxCuBE/dtox" role="dtox"/>
+  <device hwrid="/spec_mxCuBE/lambda" role="wavelength"/>
+  <device hwrid="/spec_mxCuBE/energy" role="energy"/>
+  <command type="spec" version="bli9113-spec:kappa" name="dist2res">CalculateResolutionFromDistance</command>
+  <command type="spec" version="bli9113-spec:kappa" name="res2dist">CalculateDistanceFromResolution</command>
+  <command type="spec" version="bli9113-spec:kappa" name="detector_radius">_getRadius</command>
+  <command type="spec" version="bli9113-spec:kappa" name="wavelength">getMxWavelength</command>
+</equipment>

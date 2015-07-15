@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<device class="SpecMotor">
+  <username>BeamStop Hor</username>
+  <specname>bstopy</specname>
+  <specversion>130.235.94.114:kappa</specversion>
+  <GUIstep>0.01</GUIstep>
+</device>

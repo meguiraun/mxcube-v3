@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<device class="SpecMotorWPositions">
+  <username>Zoom</username>
+  <specname>zoom</specname>
+  <specversion>130.235.94.114:kappa</specversion>
+  <positions>
+    <position>
+      <username>Zoom 1</username>
+      <offset>1</offset>
+      <lightLevel>1</lightLevel>
+      <calibrationData>
+        <pixelsPerMmY>267.907</pixelsPerMmY>
+        <pixelsPerMmZ>276.515</pixelsPerMmZ>
+      </calibrationData>
+    </position>
+    <position>
+      <username>Zoom 2</username>
+      <offset>2</offset>
+      <lightLevel>1.1</lightLevel>
+      <calibrationData>
+        <pixelsPerMmY>420.438</pixelsPerMmY>
+        <pixelsPerMmZ>433.663</pixelsPerMmZ>
+      </calibrationData>
+    </position>
+    <position>
+      <username>Zoom 3</username>
+      <offset>3</offset>
+      <lightLevel>1.2</lightLevel>
+      <calibrationData>
+        <pixelsPerMmY>677.647</pixelsPerMmY>
+        <pixelsPerMmZ>697.452</pixelsPerMmZ>
+      </calibrationData>
+    </position>
+    <position>
+      <username>Zoom 4</username>
+      <offset>4</offset>
+      <lightLevel>1.63</lightLevel>
+      <calibrationData>
+        <pixelsPerMmY>1107.692</pixelsPerMmY>
+        <pixelsPerMmZ>1100.503</pixelsPerMmZ>
+      </calibrationData>
+    </position>
+    <position>
+      <username>Zoom 5</username>
+      <offset>5</offset>
+      <lightLevel>2.5</lightLevel>
+      <calibrationData>
+        <pixelsPerMmY>1745.455</pixelsPerMmY>
+        <pixelsPerMmZ>1787.755</pixelsPerMmZ>
+      </calibrationData>
+    </position>
+    <position>
+      <username>Zoom 6</username>
+      <offset>6</offset>
+      <lightLevel>3.3</lightLevel>
+      <calibrationData>
+        <pixelsPerMmY>2880.0</pixelsPerMmY>
+        <pixelsPerMmZ>2825.807</pixelsPerMmZ>
+      </calibrationData>
+    </position>
+    <position>
+      <username>Zoom 7</username>
+      <offset>7</offset>
+      <lightLevel>3.3</lightLevel>
+      <calibrationData>
+        <pixelsPerMmY>2880.0</pixelsPerMmY>
+        <pixelsPerMmZ>2825.807</pixelsPerMmZ>
+      </calibrationData>
+    </position>
+    <position>
+      <username>Zoom 8</username>
+      <offset>8</offset>
+      <lightLevel>3.3</lightLevel>
+      <calibrationData>
+        <pixelsPerMmY>2880.0</pixelsPerMmY>
+        <pixelsPerMmZ>2825.807</pixelsPerMmZ>
+      </calibrationData>
+    </position>
+    <position>
+      <username>Zoom 9</username>
+      <offset>9</offset>
+      <lightLevel>3.3</lightLevel>
+      <calibrationData>
+        <pixelsPerMmY>2880.0</pixelsPerMmY>
+        <pixelsPerMmZ>2825.807</pixelsPerMmZ>
+      </calibrationData>
+    </position>
+  </positions>
+</device>

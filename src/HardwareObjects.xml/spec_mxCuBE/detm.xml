@@ -1,0 +1,6 @@
+<device class = "SpecMotor">
+  <username>Detdist</username>
+  <specname>dtox</specname>
+  <specversion>130.235.94.114:kappa</specversion>
+  <GUIstep>10.0</GUIstep>
+</device>

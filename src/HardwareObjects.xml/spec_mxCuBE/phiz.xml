@@ -1,0 +1,6 @@
+<device class = "SpecMotor">
+  <username>Phi Vert</username>
+  <specname>phiz</specname>
+  <specversion>bli9113-spec:kappa</specversion>
+  <GUIstep>0.100</GUIstep>
+</device>

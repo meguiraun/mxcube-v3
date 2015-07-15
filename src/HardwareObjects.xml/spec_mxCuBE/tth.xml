@@ -1,0 +1,7 @@
+<device class = "SpecMotor">
+  <username>2theta</username>
+  <specname>tth</specname>
+  <specversion>130.235.94.114:kappa</specversion>
+  <GUIstep>5.0</GUIstep>
+</device>
+

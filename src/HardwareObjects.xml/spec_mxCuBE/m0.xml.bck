@@ -1,0 +1,6 @@
+<device class = "SpecMotor">
+  <username>m0</username>
+  <specname>m0</specname>
+  <specversion>miaou:gabadinh</specversion>
+  <GUIstep>90</GUIstep>
+</device>

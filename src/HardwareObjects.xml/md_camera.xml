@@ -1,0 +1,8 @@
+<device class="MaxLabMDCamera">
+  <username>Camera Microdiff</username>
+  <specversion>130.235.94.114:kappa</specversion>
+  <channel type="spec" name="UdiffVersion">UDIFF_VERSION</channel>
+  <tangoname>i9113/microdiff/newMD</tangoname>
+  <interval>100</interval>
+  <remote_interval>80</remote_interval>
+</device>

@@ -1,0 +1,6 @@
+<device class = "SpecMotor">
+  <username>t2h</username>
+  <specname>t2h</specname>
+  <specversion>130.235.94.114:kappa</specversion>
+  <GUIstep>0.010</GUIstep>
+</device>

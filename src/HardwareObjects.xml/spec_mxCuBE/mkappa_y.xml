@@ -1,0 +1,6 @@
+<device class = "SpecMotor">
+  <username>Kappa Y</username>
+  <specname>sampy</specname>
+  <specversion>130.235.94.114:kappa</specversion>
+  <GUIstep>0.100</GUIstep>
+</device>

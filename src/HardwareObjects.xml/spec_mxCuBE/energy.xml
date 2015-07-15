@@ -1,0 +1,5 @@
+<device class = "SpecMotor">
+  <username>Energy</username>
+  <specname>energy</specname>
+  <specversion>130.235.94.114:kappa</specversion>
+</device>

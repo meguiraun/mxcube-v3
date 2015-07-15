@@ -1,0 +1,404 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>RestMxcube documentation &mdash; MxCube v0.1 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.1',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="MxCube v0.1 documentation" href="index.html" />
+    <link rel="next" title="RestParser documentation" href="RestParser.html" />
+    <link rel="prev" title="Welcome to MxCube’s documentation!" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="RestParser.html" title="RestParser documentation"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to MxCube’s documentation!"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">MxCube v0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-rest_mxcube">
+<h1>RestMxcube documentation<a class="headerlink" href="#module-rest_mxcube" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="rest_mxcube.add_collection">
+<tt class="descclassname">rest_mxcube.</tt><tt class="descname">add_collection</tt><big>(</big><em>method</em><big>)</big><a class="headerlink" href="#rest_mxcube.add_collection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a collection into the sample queue <a href="#id1"><span class="problematic" id="id2">**</span></a><a href="#id3"><span class="problematic" id="id4">*</span></a>asociate to a sample!
+data={generic_data, &#8220;Method&#8221;:method, &#8220;SampleId&#8221;: sampleid ,&#8221;MethodId&#8221;: id, parameters}, 
+for example for a standard data collection:
+data={generic_data, &#8220;Method&#8221;:StandarCollection, &#8220;SampleId&#8221;: sampleid, &#8220;MethodId&#8221;: id, parameters:{</p>
+<blockquote>
+<blockquote>
+osc_range: { label: &#8220;Oscillation range&#8221;, default_value: 1.0, value: 0 },
+osc_start: { label: &#8220;Oscillation start&#8221;, default_value: 0, value: 0 },
+exp_time: { label: &#8220;Exposure time&#8221;, default_value: 10.0, value: 0 },
+n_images: { label: &#8220;Number of images&#8221;, default_value: 1, value: 0 },
+energy: {label: &#8220;Energy&#8221;, default_value: 12.3984, value: 0 },
+resolution: {label: &#8220;Resolution&#8221;, default_value: 2.498, value: 0 },
+transmission: {label: &#8220;Transmission&#8221;, default_value: 100.0, value: 0} },</blockquote>
+<p>},</p>
+</blockquote>
+<p>return_data={&#8220;result&#8221;: True/False}</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="rest_mxcube.add_sample">
+<tt class="descclassname">rest_mxcube.</tt><tt class="descname">add_sample</tt><big>(</big><em>id</em><big>)</big><a class="headerlink" href="#rest_mxcube.add_sample" title="Permalink to this definition">¶</a></dt>
+<dd>Add the information of the sample with id:&#8221;id&#8221;
+data = {generic_data, &#8220;SampleId&#8221;:id, sample_data={&#8216;holderLength&#8217;: 22.0, &#8216;code&#8217;: None, &#8216;containerSampleChangerLocation&#8217;: &#8216;1&#8217;, &#8216;proteinAcronym&#8217;: &#8216;Mnth&#8217;, &#8216;cellGamma&#8217;: 0.0, &#8216;cellAlpha&#8217;: 0.0, &#8216;sampleId&#8217;: 444179, &#8216;cellBeta&#8217;: 0.0, &#8216;crystalSpaceGroup&#8217;: &#8216;R32&#8217;, &#8216;sampleLocation&#8217;: &#8216;2&#8217;, &#8216;sampleName&#8217;: &#8216;sample-E02&#8217;, &#8216;cellA&#8217;: 0.0, &#8216;diffractionPlan&#8217;: {}, &#8216;cellC&#8217;: 0.0, &#8216;cellB&#8217;: 0.0, &#8216;experimentType&#8217;: &#8216;Default&#8217;}}
+return_data={&#8220;result&#8221;: True/False}</dd></dl>
+
+<dl class="function">
+<dt id="rest_mxcube.centre">
+<tt class="descclassname">rest_mxcube.</tt><tt class="descname">centre</tt><big>(</big><big>)</big><a class="headerlink" href="#rest_mxcube.centre" title="Permalink to this definition">¶</a></dt>
+<dd>Start centring procedure
+data = {generic_data, &#8220;Mode&#8221;: mode}
+return_data={&#8220;result&#8221;: True/False}</dd></dl>
+
+<dl class="function">
+<dt id="rest_mxcube.delete_collection">
+<tt class="descclassname">rest_mxcube.</tt><tt class="descname">delete_collection</tt><big>(</big><em>id</em><big>)</big><a class="headerlink" href="#rest_mxcube.delete_collection" title="Permalink to this definition">¶</a></dt>
+<dd>delete the collection with id:&#8221;id&#8221;
+data={generic_data, &#8220;MethodId&#8221;: id},   
+return_data={&#8220;result&#8221;: True/False}</dd></dl>
+
+<dl class="function">
+<dt id="rest_mxcube.delete_sample">
+<tt class="descclassname">rest_mxcube.</tt><tt class="descname">delete_sample</tt><big>(</big><em>id</em><big>)</big><a class="headerlink" href="#rest_mxcube.delete_sample" title="Permalink to this definition">¶</a></dt>
+<dd>Delete the sample with id:&#8221;id&#8221;
+data = {generic_data, &#8220;SampleId&#8221;:id}
+return_data={&#8220;result&#8221;: True/False}</dd></dl>
+
+<dl class="function">
+<dt id="rest_mxcube.error404">
+<tt class="descclassname">rest_mxcube.</tt><tt class="descname">error404</tt><big>(</big><em>error</em><big>)</big><a class="headerlink" href="#rest_mxcube.error404" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rest_mxcube.get_bl_id_status">
+<tt class="descclassname">rest_mxcube.</tt><tt class="descname">get_bl_id_status</tt><big>(</big><em>id</em><big>)</big><a class="headerlink" href="#rest_mxcube.get_bl_id_status" title="Permalink to this definition">¶</a></dt>
+<dd>Beamline: get beamline status of id:&#8221;id&#8221;
+data = {generic_data, &#8220;Moveable&#8221;:id}
+return_data = {&#8220;Moveable&#8221;: id, &#8220;Status&#8221;: status}</dd></dl>
+
+<dl class="function">
+<dt id="rest_mxcube.get_bl_status">
+<tt class="descclassname">rest_mxcube.</tt><tt class="descname">get_bl_status</tt><big>(</big><em>id</em><big>)</big><a class="headerlink" href="#rest_mxcube.get_bl_status" title="Permalink to this definition">¶</a></dt>
+<dd>Beamline: get beamline generic status (energy, resolution ...)
+data = {generic_data}
+return_data = { generic_data, {&#8220;moveable1&#8221;:position}, ..., {&#8220;moveableN&#8221;:position} , xxxx }</dd></dl>
+
+<dl class="function">
+<dt id="rest_mxcube.get_camera_view">
+<tt class="descclassname">rest_mxcube.</tt><tt class="descname">get_camera_view</tt><big>(</big><big>)</big><a class="headerlink" href="#rest_mxcube.get_camera_view" title="Permalink to this definition">¶</a></dt>
+<dd>SampleCentring: subscribe from the streaming
+data = {generic_data} #or nothing?
+return_data={&#8220;result&#8221;: True/False}</dd></dl>
+
+<dl class="function">
+<dt id="rest_mxcube.get_centring_of_id">
+<tt class="descclassname">rest_mxcube.</tt><tt class="descname">get_centring_of_id</tt><big>(</big><em>id</em><big>)</big><a class="headerlink" href="#rest_mxcube.get_centring_of_id" title="Permalink to this definition">¶</a></dt>
+<dd>SampleCentring: get centring point position of point with id:&#8221;id&#8221;, id=1,2,3...
+data = {generic_data, &#8220;point&#8221;: id}
+return_data = {&#8220;id&#8221;: {x,y}}</dd></dl>
+
+<dl class="function">
+<dt id="rest_mxcube.get_collection">
+<tt class="descclassname">rest_mxcube.</tt><tt class="descname">get_collection</tt><big>(</big><em>id</em><big>)</big><a class="headerlink" href="#rest_mxcube.get_collection" title="Permalink to this definition">¶</a></dt>
+<dd><p>get the collection with id:&#8221;id&#8221;
+data={generic_data}, 
+for example for a standard data collection:
+return_data={&#8220;Method&#8221;:StandarCollection,  &#8220;SampleId&#8221;: sampleid, &#8220;MethodId&#8221;: id, parameters:{</p>
+<blockquote>
+<blockquote>
+osc_range: { label: &#8220;Oscillation range&#8221;, default_value: 1.0, value: 0 },
+osc_start: { label: &#8220;Oscillation start&#8221;, default_value: 0, value: 0 },
+exp_time: { label: &#8220;Exposure time&#8221;, default_value: 10.0, value: 0 },
+n_images: { label: &#8220;Number of images&#8221;, default_value: 1, value: 0 },
+energy: {label: &#8220;Energy&#8221;, default_value: 12.3984, value: 0 },
+resolution: {label: &#8220;Resolution&#8221;, default_value: 2.498, value: 0 },
+transmission: {label: &#8220;Transmission&#8221;, default_value: 100.0, value: 0} },</blockquote>
+<p>},</p>
+</blockquote>
+</dd></dl>
+
+<dl class="function">
+<dt id="rest_mxcube.get_collection_id_status">
+<tt class="descclassname">rest_mxcube.</tt><tt class="descname">get_collection_id_status</tt><big>(</big><em>id</em><big>)</big><a class="headerlink" href="#rest_mxcube.get_collection_id_status" title="Permalink to this definition">¶</a></dt>
+<dd>get the status of the collection with id:&#8221;id&#8221;, (running, stopped, cancelled, finished, ...)
+data={generic_data},
+return_data={&#8220;CollectionId&#8221;: id, &#8220;Status&#8221;: status}</dd></dl>
+
+<dl class="function">
+<dt id="rest_mxcube.get_collection_list">
+<tt class="descclassname">rest_mxcube.</tt><tt class="descname">get_collection_list</tt><big>(</big><em>id</em><big>)</big><a class="headerlink" href="#rest_mxcube.get_collection_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>get the collection with id:&#8221;id&#8221;
+data={generic_data}, 
+for example for a standard data collection:
+return_data={&#8220;Method&#8221;:StandarCollection,  &#8220;SampleId&#8221;: sampleid, &#8220;MethodId&#8221;: id, parameters:{</p>
+<blockquote>
+<blockquote>
+osc_range: { label: &#8220;Oscillation range&#8221;, default_value: 1.0, value: 0 },
+osc_start: { label: &#8220;Oscillation start&#8221;, default_value: 0, value: 0 },
+exp_time: { label: &#8220;Exposure time&#8221;, default_value: 10.0, value: 0 },
+n_images: { label: &#8220;Number of images&#8221;, default_value: 1, value: 0 },
+energy: {label: &#8220;Energy&#8221;, default_value: 12.3984, value: 0 },
+resolution: {label: &#8220;Resolution&#8221;, default_value: 2.498, value: 0 },
+transmission: {label: &#8220;Transmission&#8221;, default_value: 100.0, value: 0} },</blockquote>
+<p>},</p>
+</blockquote>
+</dd></dl>
+
+<dl class="function">
+<dt id="rest_mxcube.get_collection_status">
+<tt class="descclassname">rest_mxcube.</tt><tt class="descname">get_collection_status</tt><big>(</big><em>id</em><big>)</big><a class="headerlink" href="#rest_mxcube.get_collection_status" title="Permalink to this definition">¶</a></dt>
+<dd>get the status of all data collections, (running, stopped, cancelled, finished, ...)
+data={generic_data},   
+return_data={ {&#8220;CollectionId&#8221;: id1, &#8220;Status&#8221;: status}, ..., {&#8220;CollectionId&#8221;: idN, &#8220;Status&#8221;: status} }</dd></dl>
+
+<dl class="function">
+<dt id="rest_mxcube.get_sample">
+<tt class="descclassname">rest_mxcube.</tt><tt class="descname">get_sample</tt><big>(</big><em>id</em><big>)</big><a class="headerlink" href="#rest_mxcube.get_sample" title="Permalink to this definition">¶</a></dt>
+<dd>Get the information of the sample with id:&#8221;id&#8221;
+data = {generic_data, &#8220;SampleId&#8221;:id}
+return_data={&#8220;SampleId&#8221;:id, sample_data={&#8216;holderLength&#8217;: 22.0, &#8216;code&#8217;: None, &#8216;containerSampleChangerLocation&#8217;: &#8216;1&#8217;, &#8216;proteinAcronym&#8217;: &#8216;Mnth&#8217;, &#8216;cellGamma&#8217;: 0.0, &#8216;cellAlpha&#8217;: 0.0, &#8216;sampleId&#8217;: 444179, &#8216;cellBeta&#8217;: 0.0, &#8216;crystalSpaceGroup&#8217;: &#8216;R32&#8217;, &#8216;sampleLocation&#8217;: &#8216;2&#8217;, &#8216;sampleName&#8217;: &#8216;sample-E02&#8217;, &#8216;cellA&#8217;: 0.0, &#8216;diffractionPlan&#8217;: {}, &#8216;cellC&#8217;: 0.0, &#8216;cellB&#8217;: 0.0, &#8216;experimentType&#8217;: &#8216;Default&#8217;}}</dd></dl>
+
+<dl class="function">
+<dt id="rest_mxcube.get_sample_list">
+<tt class="descclassname">rest_mxcube.</tt><tt class="descname">get_sample_list</tt><big>(</big><big>)</big><a class="headerlink" href="#rest_mxcube.get_sample_list" title="Permalink to this definition">¶</a></dt>
+<dd>Get the sample list already on the queue
+data = {generic_data}
+return_data={&#8220;SampleId1&#8221;:id, ..., &#8220;SampleIdN&#8221;:id}</dd></dl>
+
+<dl class="function">
+<dt id="rest_mxcube.get_status">
+<tt class="descclassname">rest_mxcube.</tt><tt class="descname">get_status</tt><big>(</big><big>)</big><a class="headerlink" href="#rest_mxcube.get_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>SampleCentring: get generic status, positions of moveables ...
+data = {generic_data}
+return_data = { generic_data,</p>
+<blockquote>
+Moveable1:{&#8216;Status&#8217;: status, &#8216;position&#8217;: position}, 
+...,  
+MoveableN:{&#8216;Status&#8217;: status, &#8216;position&#8217;: position} 
+}</blockquote>
+</dd></dl>
+
+<dl class="function">
+<dt id="rest_mxcube.get_status_of_id">
+<tt class="descclassname">rest_mxcube.</tt><tt class="descname">get_status_of_id</tt><big>(</big><em>id</em><big>)</big><a class="headerlink" href="#rest_mxcube.get_status_of_id" title="Permalink to this definition">¶</a></dt>
+<dd>SampleCentring: get status of element with id:&#8221;id&#8221;
+data = {generic_data, &#8216;Moveable1&#8217;, ..., MoveableN}
+return_data = {&#8216;Status&#8217;: status, &#8216;position&#8217;: position}</dd></dl>
+
+<dl class="function">
+<dt id="rest_mxcube.mount_sample">
+<tt class="descclassname">rest_mxcube.</tt><tt class="descname">mount_sample</tt><big>(</big><em>id</em><big>)</big><a class="headerlink" href="#rest_mxcube.mount_sample" title="Permalink to this definition">¶</a></dt>
+<dd>Mount sample with id:&#8221;id&#8221;
+data = {generic_data, &#8220;SampleId&#8221;: id}
+return_data={&#8220;result&#8221;: True/False}</dd></dl>
+
+<dl class="function">
+<dt id="rest_mxcube.move_motor">
+<tt class="descclassname">rest_mxcube.</tt><tt class="descname">move_motor</tt><big>(</big><em>id</em><big>)</big><a class="headerlink" href="#rest_mxcube.move_motor" title="Permalink to this definition">¶</a></dt>
+<dd>Beamline: move &#8220;id&#8221; moveable (energy, resolution ...) to the position specified
+data = {generic_data, &#8220;moveable&#8221;: id, &#8220;position&#8221;: pos}
+return_data={&#8220;result&#8221;: True/False}</dd></dl>
+
+<dl class="data">
+<dt id="rest_mxcube.mxcube_app">
+<tt class="descclassname">rest_mxcube.</tt><tt class="descname">mxcube_app</tt><a class="headerlink" href="#rest_mxcube.mxcube_app" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generic/mandatory data structure, each method will require additional data such as motor names, positions, etc.
+generic_data ={</p>
+<blockquote>
+<dl class="docutils">
+<dt>&#8220;Data&#8221;: {</dt>
+<dd>DATA_STRUCTURE, #{} whatever is required, the put/get methods do not care about the specific data</dd>
+</dl>
+<p>},
+#the next ones for debugging purposes (coming from the web client):
+&#8220;Origin&#8221;: UI component,
+&#8220;Debug&#8221;: True/false,
+&#8220;Time&#8221;: YY:MM:DD, HH:MM:SS,
+&#8220;Username&#8221;: username,
+&#8220;Proposal&#8221;: proposal</p>
+</blockquote>
+<p>}
+The data shown below for each method must also include the dict above</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="rest_mxcube.put_centring_with_id">
+<tt class="descclassname">rest_mxcube.</tt><tt class="descname">put_centring_with_id</tt><big>(</big><em>id</em><big>)</big><a class="headerlink" href="#rest_mxcube.put_centring_with_id" title="Permalink to this definition">¶</a></dt>
+<dd>SampleCentring: set centring point position of point with id:&#8221;id&#8221;, id=1,2,3...
+data = {generic_data, &#8220;point&#8221;: id, &#8220;position&#8221;: {x,y}}
+return_data={&#8220;result&#8221;: True/False}</dd></dl>
+
+<dl class="function">
+<dt id="rest_mxcube.serve_static_file">
+<tt class="descclassname">rest_mxcube.</tt><tt class="descname">serve_static_file</tt><big>(</big><em>url</em><big>)</big><a class="headerlink" href="#rest_mxcube.serve_static_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="rest_mxcube.set_centring_mode">
+<tt class="descclassname">rest_mxcube.</tt><tt class="descname">set_centring_mode</tt><big>(</big><em>id</em><big>)</big><a class="headerlink" href="#rest_mxcube.set_centring_mode" title="Permalink to this definition">¶</a></dt>
+<dd>Set centring method: semi auto, fully auto,  ...
+data = {generic_data, &#8220;Mode&#8221;: mode}
+return_data={&#8220;result&#8221;: True/False}</dd></dl>
+
+<dl class="function">
+<dt id="rest_mxcube.set_collection_method">
+<tt class="descclassname">rest_mxcube.</tt><tt class="descname">set_collection_method</tt><big>(</big><em>method</em><big>)</big><a class="headerlink" href="#rest_mxcube.set_collection_method" title="Permalink to this definition">¶</a></dt>
+<dd>Define the collection method, standard collection, helical, mesh
+data={generic_data, &#8220;Method&#8221;:method}
+return_data={&#8220;result&#8221;: True/False}
+OBSOLETE BY ADD COLLECTION</dd></dl>
+
+<dl class="function">
+<dt id="rest_mxcube.set_sample_mode">
+<tt class="descclassname">rest_mxcube.</tt><tt class="descname">set_sample_mode</tt><big>(</big><em>id</em><big>)</big><a class="headerlink" href="#rest_mxcube.set_sample_mode" title="Permalink to this definition">¶</a></dt>
+<dd>Set sample changer mode: sample changer, manually mounted, ... (maybe it is enoug to set for all the same mode)
+data = {generic_data, &#8220;Mode&#8221;: mode}
+return_data={&#8220;result&#8221;: True/False}</dd></dl>
+
+<dl class="function">
+<dt id="rest_mxcube.snapshot">
+<tt class="descclassname">rest_mxcube.</tt><tt class="descname">snapshot</tt><big>(</big><big>)</big><a class="headerlink" href="#rest_mxcube.snapshot" title="Permalink to this definition">¶</a></dt>
+<dd>Save snapshot of the sample view
+data = {generic_data, &#8220;Path&#8221;: path} # not sure if path should be available, or directly use the user/proposal path
+return_data={&#8220;result&#8221;: True/False}</dd></dl>
+
+<dl class="function">
+<dt id="rest_mxcube.sse_pack">
+<tt class="descclassname">rest_mxcube.</tt><tt class="descname">sse_pack</tt><big>(</big><em>d</em><big>)</big><a class="headerlink" href="#rest_mxcube.sse_pack" title="Permalink to this definition">¶</a></dt>
+<dd>Pack data in SSE format</dd></dl>
+
+<dl class="function">
+<dt id="rest_mxcube.stream_video">
+<tt class="descclassname">rest_mxcube.</tt><tt class="descname">stream_video</tt><big>(</big><big>)</big><a class="headerlink" href="#rest_mxcube.stream_video" title="Permalink to this definition">¶</a></dt>
+<dd>it just send a message to the client so it knows that there is a new image. A HO is supplying that image</dd></dl>
+
+<dl class="function">
+<dt id="rest_mxcube.umount_sample">
+<tt class="descclassname">rest_mxcube.</tt><tt class="descname">umount_sample</tt><big>(</big><big>)</big><a class="headerlink" href="#rest_mxcube.umount_sample" title="Permalink to this definition">¶</a></dt>
+<dd>Umount mounted sample
+data = {generic_data}
+return_data={&#8220;result&#8221;: True/False}</dd></dl>
+
+<dl class="function">
+<dt id="rest_mxcube.update_collection">
+<tt class="descclassname">rest_mxcube.</tt><tt class="descname">update_collection</tt><big>(</big><em>method</em><big>)</big><a class="headerlink" href="#rest_mxcube.update_collection" title="Permalink to this definition">¶</a></dt>
+<dd><p>update a collection into the sample queue <a href="#id5"><span class="problematic" id="id6">**</span></a><a href="#id7"><span class="problematic" id="id8">*</span></a>asociated to a sample!
+data={generic_data, &#8220;Method&#8221;:method, &#8220;SampleId&#8221;: sampleid ,&#8221;MethodId&#8221;: id, parameters}, 
+for example for a standard data collection:
+data={generic_data, &#8220;Method&#8221;:StandarCollection, &#8220;SampleId&#8221;: sampleid, &#8220;MethodId&#8221;: id, parameters:{</p>
+<blockquote>
+<blockquote>
+osc_range: { label: &#8220;Oscillation range&#8221;, default_value: 1.0, value: 0 },
+osc_start: { label: &#8220;Oscillation start&#8221;, default_value: 0, value: 0 },
+exp_time: { label: &#8220;Exposure time&#8221;, default_value: 10.0, value: 0 },
+n_images: { label: &#8220;Number of images&#8221;, default_value: 1, value: 0 },
+energy: {label: &#8220;Energy&#8221;, default_value: 12.3984, value: 0 },
+resolution: {label: &#8220;Resolution&#8221;, default_value: 2.498, value: 0 },
+transmission: {label: &#8220;Transmission&#8221;, default_value: 100.0, value: 0} },</blockquote>
+<p>},</p>
+</blockquote>
+<p>return_data={&#8220;result&#8221;: True/False}</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="rest_mxcube.update_sample">
+<tt class="descclassname">rest_mxcube.</tt><tt class="descname">update_sample</tt><big>(</big><em>id</em><big>)</big><a class="headerlink" href="#rest_mxcube.update_sample" title="Permalink to this definition">¶</a></dt>
+<dd>Update the information of the sample with id:&#8221;id&#8221;
+data = {generic_data, &#8220;SampleId&#8221;:id, sample_data={&#8216;holderLength&#8217;: 22.0, &#8216;code&#8217;: None, &#8216;containerSampleChangerLocation&#8217;: &#8216;1&#8217;, &#8216;proteinAcronym&#8217;: &#8216;Mnth&#8217;, &#8216;cellGamma&#8217;: 0.0, &#8216;cellAlpha&#8217;: 0.0, &#8216;sampleId&#8217;: 444179, &#8216;cellBeta&#8217;: 0.0, &#8216;crystalSpaceGroup&#8217;: &#8216;R32&#8217;, &#8216;sampleLocation&#8217;: &#8216;2&#8217;, &#8216;sampleName&#8217;: &#8216;sample-E02&#8217;, &#8216;cellA&#8217;: 0.0, &#8216;diffractionPlan&#8217;: {}, &#8216;cellC&#8217;: 0.0, &#8216;cellB&#8217;: 0.0, &#8216;experimentType&#8217;: &#8216;Default&#8217;}}
+return_data={&#8220;result&#8221;: True/False}</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="index.html"
+                                  title="previous chapter">Welcome to MxCube&#8217;s documentation!</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="RestParser.html"
+                                  title="next chapter">RestParser documentation</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/rest_mxcube.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="modindex.html" title="Global Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="RestParser.html" title="RestParser documentation"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to MxCube’s documentation!"
+             >previous</a> |</li>
+        <li><a href="index.html">MxCube v0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2015, MxCube Collaboration.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.6.
+    </div>
+  </body>
+</html>

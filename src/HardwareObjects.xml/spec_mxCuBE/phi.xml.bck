@@ -1,0 +1,6 @@
+<device class = "SpecMotor">
+  <username>Phi</username>
+  <specname>phi</specname>
+  <specversion>blissdb:8001</specversion>
+  <GUIstep>90</GUIstep>
+</device>

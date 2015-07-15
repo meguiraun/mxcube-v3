@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<equipment class="MaxLabMicrodiff">
+  <username>Minidiff</username>
+  <device role="camera" hwrid="md_camera"></device>
+  <wagolight>/udiff_light</wagolight>
+  <device role="zoom" hwrid="/udiff_zoom"></device>
+  <device role="light" hwrid="/udiff_lightmot"></device>
+  <device role="backlight" hwrid="/udiff_light"></device> 
+  <motors>
+    <phi>
+      <device role="phi" hwrid="/udiff_omega"></device>  
+      <device role="phiz" hwrid="/udiff_phiz"></device>  
+    </phi>
+    <sample>
+      <device role="zoom" hwrid="/udiff_zoom"></device>
+      <device role="light" hwrid="/udiff_lightmot"></device> 
+      <device role="focus" hwrid="/udiff_phix"></device>
+      <device role="phiy" hwrid="/udiff_phiy"></device> 
+      <device role="sampx" hwrid="/udiff_sampx"></device>
+      <device role="sampy" hwrid="/udiff_sampy"></device>
+      <device role="kappa" hwrid="/udiff_kappa"></device>
+      <device role="kappa_phi" hwrid="/udiff_kappaphi"></device>
+    </sample>
+    <others>
+      <device hwrid="/spec_mxCuBE/bstopy"></device>
+      <device role="bstopz" hwrid="/spec_mxCuBE/bstopz"></device>  
+      <device hwrid="/spec_mxCuBE/dtox"></device>  
+    </others>
+    <kappa>
+      <device hwrid="/udiff_omega"></device>  
+      <device hwrid="/spec_mxCuBE/kap1"></device>  
+      <device hwrid="/spec_mxCuBE/kap2"></device>  
+      <device hwrid="/spec_mxCuBE/mkappa_x"></device>  
+      <device hwrid="/spec_mxCuBE/mkappa_y"></device>  
+      <device hwrid="/spec_mxCuBE/mkappa_z"></device>  
+    </kappa>
+  </motors>
+</equipment>
