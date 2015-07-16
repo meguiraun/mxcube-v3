@@ -5,7 +5,7 @@ from beaker.middleware import SessionMiddleware
 import gevent
 import gevent.event
 from gevent import monkey; monkey.patch_all()
-import os, src.RestParser
+import os, RestParser
 
 session_opts = {
     'session.type': 'file',

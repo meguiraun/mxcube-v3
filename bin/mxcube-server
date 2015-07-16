@@ -1,0 +1,33 @@
+#!/bin/sh
+
+MXCUBE_ROOT="$( cd "$(dirname "$0")/.." && pwd )/src"
+MXCUBE_APP="$( cd "$(dirname "$0")/.." && pwd )"
+echo $MXCUBE_ROOT
+echo $MXCUBE_APP
+
+export CUSTOM_HARDWARE_OBJECTS_PATH="$MXCUBE_ROOT/HardwareObjects"
+echo $CUSTOM_HARDWARE_OBJECTS_PATH
+PYTHONPATH="$MXCUBE_ROOT:$PYTHONPATH" export PYTHONPATH
+
+if [ -d $1 ]; then
+  export XML_FILES_PATH="$1"
+else
+  export XML_FILES_PATH="$PWD/$1"
+fi
+
+if [ -z $XML_FILES_PATH ]; then
+  echo "Usage: $0 xml_files_path"
+  exit 1
+fi
+
+if [ -d $XML_FILES_PATH ]; then
+  echo
+else
+  echo "Invalid directory: $XML_FILES_PATH"
+  exit 1
+fi
+
+cd $MXCUBE_APP
+exec python src/rest_mxcube.py
+#exec python -m bottle --server gevent --bind 0.0.0.0:8080 --debug app:mxcube
+

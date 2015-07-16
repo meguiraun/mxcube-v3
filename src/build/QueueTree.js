@@ -52,6 +52,10 @@ var SampleTree = React.createClass({displayName: "SampleTree",
   		//TODO: add (default) params
 		samples = this.state.sampleList
 		selSamples = this.getSelectedSamples()
+		if (selSamples.length == 0){
+			alert('Select a sample')
+			return
+		}
 		for (var elem in selSamples){ //0, 1, 2, ...
 			for (i = 0; i < samples.length; i++){
 				console.log('in inner loop   '+i)
