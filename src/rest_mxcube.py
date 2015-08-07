@@ -355,6 +355,7 @@ def delete_collection(id):
     """
     data = dict(request.POST.items())
     return samples.getCollection(data)
+    
 @mxcube.route("/mxcube/api/v0.1/samples/:id/collections/status", method='GET')
 def get_collection_status(id):
     """get the status of all data collections, (running, stopped, cancelled, finished, ...)
@@ -363,6 +364,7 @@ def get_collection_status(id):
     """
     data = dict(request.POST.items())
     return collection.getCollectionStatus(data)
+
 @mxcube.route("/mxcube/api/v0.1/samples/:id/collections/:colid/status", method='GET')
 def get_collection_id_status(id):
     """get the status of the collection with id:"id", (running, stopped, cancelled, finished, ...)
@@ -371,14 +373,29 @@ def get_collection_id_status(id):
     """
     data = dict(request.POST.items())
     return collection.getCollectionStatus(data)
-# @mxcube.route("/mxcube/api/v0.1/samples/:id/collections/:colid/run", method='PUT')
-# def get_collection_id_status(id):
-#     """run the collection with id:"colid"
+
+@mxcube.route("/mxcube/api/v0.1/samples/<sampleid>/collections/<colid>/run", method='POST')
+def run_collection(**args):
+    """run the collection with id:"colid"
+    data={generic_data},
+    return_data={"CollectionId": id, "Status": status}
+    """
+    print "in run collection", args['sampleid'], args['colid']
+    data = dict(request.POST.items())
+    print data
+    #return "collection ok"
+    return collection.executeCollection(data)
+    #return collection.runCollectionStatus(data)
+
+# @mxcube.route("/mxcube/api/v0.1/samples/<id>/collections/<colid>/run", method='POST')
+# def run_queue(id):
+#     """run the whole queue
 #     data={generic_data},
 #     return_data={"CollectionId": id, "Status": status}
 #     """
 #     data = dict(request.POST.items())
-#     return collection.runCollectionStatus(data)
+#     print data
+#     #return collection.runCollectionStatus(data)
 
 ###----BEAMLINE----###
 @mxcube.route("/mxcube/api/v0.1/beamline/:id/move", method='PUT')

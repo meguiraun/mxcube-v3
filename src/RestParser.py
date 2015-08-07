@@ -1,10 +1,18 @@
 import time
 from HardwareRepository import HardwareRepository
+import QueueManager, queue_entry
+import queue_model_objects_v1 as qmo
+import queue_model_enumerables_v1 as qme
+from queue_model_enumerables_v1 import COLLECTION_ORIGIN_STR
+from queue_model_enumerables_v1 import CENTRING_METHOD
+from queue_model_enumerables_v1 import EXPERIMENT_TYPE
+
 import collections, os
 import gevent.event
 from bottle import response
 from threading import Thread
-from Queue import Queue
+# from Queue import Queue
+# import QueueManager, queue_entry
 
 """
 Generic/mandatory data structure, each method will require additional data such as motor names, positions, etc. 
@@ -33,7 +41,9 @@ def dataDict(self, origin):
 hwr_directory = os.environ["XML_FILES_PATH"]
 hwr = HardwareRepository.HardwareRepository(os.path.abspath(hwr_directory))
 hwr.connect()
-
+#this one uses mxcube queueModel (model??)
+#mxqueue = QueueManager.QueueManager('mxqueue')
+#this is a dummy queue
 experimentQueue = []
 
 class SampleCentring():
@@ -211,6 +221,7 @@ class Sample():
 	def emptyQueue(self):
 		while not experimentQueue.empty:
 			q.get_nowait()
+
 class Collection():
 	def __init__(self):
 		pass
@@ -228,6 +239,52 @@ class Collection():
 		pass
 	def removeCollectionSample(self, *args):
 		pass
+	def executeCollection(self, *args):
+		params = args[0]
+
+		self.beamline_setup = hwr.getHardwareObject("beamline-setup") #hwr.getObjectByRole("beamline_setup")
+		self.lims_client_hwobj = self.beamline_setup.lims_client_hwobj
+		self.collect_hwobj = self.beamline_setup.collect_hwobj
+		self.diffractometer_hwobj = self.beamline_setup.diffractometer_hwobj
+		self.shape_history = self.beamline_setup.shape_history_hwobj
+		self.session = self.beamline_setup.session_hwobj
+
+		self.acq = qmo.Acquisition()
+		self.acq.acquisition_parameters.collect_agent = qme.COLLECTION_ORIGIN.MXCUBE
+		#self.acq.path_template = queue_model_objects.PathTemplate()
+		#self.acq.path_template = '/home/mikel/Desktop/mxdatadir/mxdata'#copy.deepcopy(self._path_template)
+		self.acq.path_template = self.beamline_setup.get_default_path_template()
+		self.acq.acquisition_parameters.centred_position = None
+		self.acq.acquisition_parameters.energy = float(params['parameters[energy][value]'])
+		self.acq.acquisition_parameters.osc_range = float(params['parameters[osc_range][value]'])
+		self.acq.acquisition_parameters.osc_start = float(params['parameters[osc_start][value]'])
+		self.acq.acquisition_parameters.exp_time = float(params['parameters[exp_time][value]'])
+		self.acq.acquisition_parameters.num_images = float(params['parameters[num_images][value]'])
+		self.acq.acquisition_parameters.resolution = float(params['parameters[resolution][value]'])
+		self.acq.acquisition_parameters.transmission = float(params['parameters[transmission][value]'])
+
+		self.sample = qmo.Sample()
+		self.dc = qmo.DataCollection([self.acq], self.sample.crystals[0], self.sample.processing_parameters)
+		self.dc.set_name('aTest')
+		self.dc.set_number(0)
+		self.dc.experiment_type = qme.EXPERIMENT_TYPE.NATIVE
+		
+		self.param_list = qmo.to_collect_dict(self.dc, self.session, self.sample)
+		print "###################################"
+		print "###################################"
+		print "###################################"
+
+		print self.param_list
+		print "###################################"		
+		print "###################################"
+		print self.acq.acquisition_parameters
+		#update with data sent from client
+
+		#self.bl9113 = hwr.getObjectByRole("collect")
+		#self.bl9113.collect(COLLECTION_ORIGIN_STR.MXCUBE,self.param_list)
+		#or..
+		#self.collect_hwobj.collect(COLLECTION_ORIGIN_STR.MXCUBE,self.param_list)
+
 class Characterisation():
 	def __init__(self):
 		pass
