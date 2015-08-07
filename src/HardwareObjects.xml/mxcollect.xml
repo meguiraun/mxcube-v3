@@ -1,0 +1,69 @@
+<object class="BL9113MultiCollect">
+  <specversion>bli9113-spec:kappa</specversion>
+  
+  <object href="/lims" role="dbserver"/>
+  <!--object href="/safshut"      role="safety_shutter"/>
+  <object href="/sc"           role="sample_changer"/>
+  <object href="/attenuators"  role="transmission"/>
+  <object href="/mach"         role="machine_current"/>
+  <object href="/feshut"       role="undulators"/>
+  <object href="/cryospy"      role="cryo_stream"/>
+  <object href="/flux"         role="flux"/>
+   -->
+
+  <object href="/mxlocal"          role="beamline_configuration"/>
+  <object href="/minidiff"            role="diffractometer"/>
+  <!-- <object href="/energyscan"       role="energy"/> -->
+  <object href="/spec_mxCuBE/dtox" role="detector_distance"/>
+  <object href="/spec_mxCuBE/res"  role="resolution"/>
+
+  <directory_prefix>data1</directory_prefix>
+  <!--auto_processing_server>localhost:23640</auto_processing_server-->
+  <input_files_server>localhost:5698</input_files_server>
+
+  <command type="spec" name="get_resolution_at_corner">getMxResolutionAtCorner</command>
+  <command type="spec" name="get_beam_size_x">getMxBeamSizeX</command>
+  <command type="spec" name="get_beam_size_y">getMxBeamSizeY</command>
+  <command type="spec" name="get_slit_gap_h">getMxSlitGapHorizontal</command>
+  <command type="spec" name="get_slit_gap_v">getMxSlitGapVertical</command>
+  <command type="spec" name="get_beam_shape">getMxBeamShape</command>
+  <command type="spec" name="get_beam_centre_x">getMxBeamCentreX</command>
+  <command type="spec" name="get_beam_centre_y">getMxBeamCentreY</command>
+  <command type="spec" name="close_fast_shutter">msclose</command>
+  <command type="spec" name="open_fast_shutter">msopen</command>
+  <command type="spec" name="adjust_gains">adjust_i0_i1_gain</command>
+  <command type="spec" name="prepare_collection">mx_prepare_collection</command>
+  <command type="spec" name="prepare_oscillation">osc_prepare</command>
+  <command type="spec" name="build_collect_seq">build_collect_seq</command>
+  <command type="spec" name="validate_collect_parameters">validate_collect_parameters</command>
+  <command type="spec" name="do_oscillation">osc_scan</command>
+  <command type="spec" name="prepare_acquisition">mccdprep</command>
+  <command type="spec" name="start_acquisition">mccdstart</command>
+  <command type="spec" name="flush_detector">marccdsave</command>
+  <command type="spec" name="write_image">marccdsave</command>
+  <command type="spec" name="reset_detector">mccdabort</command>
+  <command type="spec" name="detector_readout">mccdread</command>
+  <command type="spec" name="prepare_beamline">prodc_prepare_beamline</command>  
+
+  <channel type="spec" name="parameters">datacollection_parameters</channel>
+  <channel type="spec" name="take_dark">MXCOLLECT_PARS/TakeDarkFlag</channel>
+  <channel type="spec" name="spec_messages">eprodc_log_message</channel>
+  <!--channel type="spec" name="image_intensity">CURRENT_IMAGE_INTENSITY</channel>
+  <channel type="spec" name="xds_filename">XDS_INPUT_FILENAME</channel>
+  <channel type="spec" name="helical">HELICAL_OSCIL</channel>
+  <channel type="spec" name="helical_pos">HELICAL_OSCIL_POS</channel>
+  <channel type="spec" name="helical_pars">HELICAL_PARS</channel-->
+  <auto_processing>
+     <program>
+        <executable>/usr/local/xtal/autoproc/autoproc_master.pl</executable>
+        <event>before image after end_multicollect</event>
+     </program>
+     <program>
+        <executable>/home/blissadm/bin/autoproc-launcher.py</executable>
+        <event>before</event>
+     </program>
+  </auto_processing>
+
+
+</object>
+

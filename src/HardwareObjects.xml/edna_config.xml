@@ -1,0 +1,9 @@
+<object class="DataAnalysis">
+  <!-- Path to script that launches edna -->
+  <edna_command>/home/blissadm/local/bin/edna_script.sh</edna_command>
+  <edna_default_file>edna_defaults.xml</edna_default_file>
+  <!--channel type="spec" version="lid292:exp" name="beam_size_x">MXSPEC_PARS["beamsize"]["x"]</channel>
+  <channel type="spec" version="lid292:exp" name="beam_size_y">MXSPEC_PARS["beamsize"]["y"]</channel-->
+  <command type="spec" name="get_beam_size_x">getMxBeamSizeX</command>
+  <command type="spec" name="get_beam_size_y">getMxBeamSizeY</command>
+</object>
