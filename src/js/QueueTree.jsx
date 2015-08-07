@@ -50,10 +50,12 @@ var SampleTree = React.createClass({
   		//TODO: once the sample is fournd do not continue iterating (return/break at that point)
   		//TODO: refactor the data sent via backbone events, harmonize etc. In fact, in the event only params are needed (I think) 
   		//TODO: add (default) params
+  		console.log('adding node2sample')
+  		console.log(item)
 		samples = this.state.sampleList
 		selSamples = this.getSelectedSamples()
 		if (selSamples.length == 0){
-			alert('Select a sample')
+			alert('Select a sample please!')
 			return
 		}
 		for (var elem in selSamples){ //0, 1, 2, ...
@@ -74,7 +76,7 @@ var SampleTree = React.createClass({
 
 					// if (samples[i].nodes.indexOf(item['node']) > -1){
 					//name does not exits
-					samples[i]['nodes'].push({name: newName, selected: false, params: {}})
+					samples[i]['nodes'].push({name: newName, selected: false, params: item.params})
 					}
 			}
 		}
@@ -148,16 +150,33 @@ var SampleTree = React.createClass({
 	},
 
  	getSelectedNodes: function(){
-		//TODO: not sure if needed
+		//TODO: only works when a single sample is selected
+		var arr = []
+		auxSamples = this.state.sampleList
+		console.log(auxSamples)
+		for (i = 0; i < auxSamples.length; i++){
+			node = auxSamples[i]['nodes'][0]
+			console.log(auxSamples['nodes'])
+			console.log(node)
+		  	if (node['selected']){
+    			arr.push(node)
+		  	}
+		}		
+		return arr;  
   	},
 
 	runCollection:function(){
 		//TODO: send everything (this.state.sampleLits) and filter in the server, OR send only the selections
 		//TODO: data to be sent 
+		//if sample is not selected will not work properly
 		console.log("************* running collection")	
+      	node = this.getSelectedNodes()[0]
+      	var aux =this.getSelectedSamples()	
+      	sample = aux[0] //only one expected when running a single collection
+
 		$.ajax({
-		url: '/mxcube/api/v0.1/samples/sampid/collections/colid/run"',
-		data: {'parameters': this.state, 'Method': 'StandardCollection', 'SampleId':'samp01', 'CollectionId': 'col01'},
+		url: '/mxcube/api/v0.1/samples/'+sample+'/collections/'+node['name']+'/run',
+		data: {'parameters': node['params'], 'Method': 'StandardCollection', 'SampleId':sample, 'CollectionId': node['name']},
 		type: 'POST',
 		success: function(res) {
 		  console.log(res);
@@ -182,7 +201,27 @@ var SampleTree = React.createClass({
   	},
 
 	anAction: function(msg){
-		console.log(msg)  
+		console.log('anAction')
+		console.log(this.state.sampleList)
+	},
+	showDetails: function(sample, node){
+		console.log(node)
+		var keys = Object.keys(node['params'])
+		console.log(sample)
+		console.log(node['name'])
+		keys.map(function(k){
+			console.log(k+':   '+node['params'][k].value)
+		})
+      	
+	},
+	getDetails: function(sample, node){
+		var keys = Object.keys(node['params'])
+		console.log(sample)
+		console.log(node['name'])
+		keys.map(function(k){
+			console.log(k+':   '+node['params'][k].value)
+		})
+      	
 	},
 
 	render: function () {
@@ -206,8 +245,9 @@ var SampleTree = React.createClass({
                               {item['nodes'].map(function (node){
                               return <li>
                                   <input type="checkbox" id={'col'+item['sample']+node['name']+'Checked'} onChange={that.toggleSelected}></input>
-                                  <label>{node}</label>
+                                  <label>{node['name']}</label>
                                   <button type="button"  id={item['sample']+node} onClick={that.removeNodeFromSample.bind(that,item['sample'],node)}>'Remove' </button>
+                                  <button type="button"  id={item['sample']+node+'Info'} onClick={that.showDetails.bind(that,item['sample'], node)}>'Show Details' </button>
                                  </li>
                           })}
                           </ul></li>; })}
