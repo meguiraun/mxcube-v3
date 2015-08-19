@@ -1,0 +1,16 @@
+#STAC OM descriptor (by Sandor Brockhauser)
+#==========================================
+OMFILENAME  {omfilename}
+OMTYPE      {omtype}
+phi         {{"%.4f"|format(data.axisStart)}}
+r_kap1      {{"%.4f"|format(data.kappaStart)}}
+r_kap2      {{"%.4f"|format(data.phiStart)}}
+sampx       {sampx:.4f}
+sampy       {sampy:.4f}
+phiy        {phiy:.4f}
+phi_dial    {phi:.4f}
+r_kap1_dial {{"%.4f"|format(data.kappaStart)}}
+r_kap2_dial {{"%.4f"|format(data.phiStart)}}
+sampx_dial  {sampx:.4f}
+sampy_dial  {sampy:.4f}
+phiy_dial   {phiy:.4f}

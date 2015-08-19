@@ -4,18 +4,18 @@
   <!-- Objects directly associatd with hardware -->
   <object href="/transmission-mockup" role="transmission"/>
   <object href="/minidiff" role="diffractometer"/>
-  <!-- <object href="/cats" role="sample_changer"/>     -->
+  <object href="/cats" role="sample_changer"/>
   <object href="/spec_mxCuBE/res" role="resolution"/>
 
   <!-- Software (abstract) concepts -->
-  <!-- <object href="/shape-history" role="shape_history"/> -->
+  <object href="/shape-history" role="shape_history"/>
   <object href="/session" role="session"/>
   <object href="/lims" role="lims_client"/>
   <object href="/edna_config" role="data_analysis"/>
   <!--<object href="/workflow-mockup" role="workflow"/> -->
  
   <!-- Procedures and routines -->
-  <!-- <object href="/energyscan" role="energy"/> -->
+  <object href="/energyscan" role="energy"/>
   <object href="/mxcollect" role="collect"/>
 
   <!-- Is it possible to change the beam wavelentgh.

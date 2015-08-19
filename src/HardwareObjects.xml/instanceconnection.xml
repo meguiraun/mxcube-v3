@@ -1,0 +1,6 @@
+<procedure class="InstanceServer">
+<!--  <host>HOST</host> -->
+  <host>dt-bli9113-datacollection.maxlab.lu.se</host>
+  <port>14001</port>
+  <forcedLocal>True</forcedLocal>
+</procedure>

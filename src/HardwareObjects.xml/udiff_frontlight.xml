@@ -1,0 +1,8 @@
+<device class="InOut">
+  <username>Microdiff light</username>
+  <specversion>bli9113-spec:kappa</specversion>
+   <offset>0</offset>
+  <command type="spec" name="set_in">flighton</command>
+  <command type="spec" name="set_out">flightoff</command>
+  <channel type="tango" name="state" tangoname="i9113/microdiff/newmd" polling="500">FrontLightIsOn</channel>
+</device>

@@ -390,10 +390,14 @@ class AbstractMultiCollect(object):
         # Preparing directory path for images and processing files
         # creating image file template and jpegs files templates
         file_parameters = data_collect_parameters["fileinfo"]
-
+        print "*************************************"
+        print "*************************************"
+        print "FILE"
         file_parameters["suffix"] = self.bl_config.detector_fileext
         image_file_template = self.image_file_format % file_parameters
-        file_parameters["template"] = image_file_template
+        file_parameters["template"] = 'mx20110291'+ image_file_template
+        file_parameters["prefix"] = 'mx20110291'
+        print file_parameters
 
         archive_directory = self.get_archive_directory(file_parameters["directory"])
         data_collect_parameters["archive_dir"] = archive_directory
@@ -728,7 +732,9 @@ class AbstractMultiCollect(object):
                                                    data_collect_parameters.get("sample_reference", {}).get("spacegroup", ""),
                                                    data_collect_parameters.get("sample_reference", {}).get("cell", ""))
                 frame += 1
-                
+                print "*********************"
+                print "*********************"
+		print "collection done"
 
     @task
     def loop(self, owner, data_collect_parameters_list):

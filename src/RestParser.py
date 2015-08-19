@@ -11,6 +11,7 @@ import collections, os
 import gevent.event
 from bottle import response
 from threading import Thread
+import logging
 # from Queue import Queue
 # import QueueManager, queue_entry
 
@@ -240,9 +241,10 @@ class Collection():
 	def removeCollectionSample(self, *args):
 		pass
 	def executeCollection(self, *args):
-		params = args[0]
+		self.params = args[0]
 
-		self.beamline_setup = hwr.getHardwareObject("beamline-setup") #hwr.getObjectByRole("beamline_setup")
+		self.beamline_setup = hwr.getHardwareObject("beamline-setup") 
+		
 		self.lims_client_hwobj = self.beamline_setup.lims_client_hwobj
 		self.collect_hwobj = self.beamline_setup.collect_hwobj
 		self.diffractometer_hwobj = self.beamline_setup.diffractometer_hwobj
@@ -255,20 +257,24 @@ class Collection():
 		#self.acq.path_template = '/home/mikel/Desktop/mxdatadir/mxdata'#copy.deepcopy(self._path_template)
 		self.acq.path_template = self.beamline_setup.get_default_path_template()
 		self.acq.acquisition_parameters.centred_position = None
-		self.acq.acquisition_parameters.energy = float(params['parameters[energy][value]'])
-		self.acq.acquisition_parameters.osc_range = float(params['parameters[osc_range][value]'])
-		self.acq.acquisition_parameters.osc_start = float(params['parameters[osc_start][value]'])
-		self.acq.acquisition_parameters.exp_time = float(params['parameters[exp_time][value]'])
-		self.acq.acquisition_parameters.num_images = float(params['parameters[num_images][value]'])
-		self.acq.acquisition_parameters.resolution = float(params['parameters[resolution][value]'])
-		self.acq.acquisition_parameters.transmission = float(params['parameters[transmission][value]'])
-
+		self.acq.acquisition_parameters.energy = 12.3894 #float(self.params['parameters[energy][value]'])
+		self.acq.acquisition_parameters.osc_range = 1.0 #float(self.params['parameters[osc_range][value]'])
+		self.acq.acquisition_parameters.osc_start = 0.0 #float(self.params['parameters[osc_start][value]'])
+		self.acq.acquisition_parameters.exp_time = 10.0 #float(self.params['parameters[exp_time][value]'])
+		self.acq.acquisition_parameters.num_images = 1 #float(self.params['parameters[num_images][value]'])
+		self.acq.acquisition_parameters.resolution = 2.498 #float(self.params['parameters[resolution][value]'])
+		self.acq.acquisition_parameters.transmission = 100.0# float(self.params['parameters[transmission][value]'])
+		self.acq.acquisition_parameters.take_snapshots = False
+		self.acq.path_template.directory = '/data/data1/visitor/mx20110291/20150814/RAW_DATA'
+		self.acq.path_template.process_directory = '/data/data1/visitor/mx20110291/20150814/PROCESSED_DATA'
+		self.acq.path_template.run_number = 1
+		self.acq.path_template.prefix = 'mx20110291'
 		self.sample = qmo.Sample()
 		self.dc = qmo.DataCollection([self.acq], self.sample.crystals[0], self.sample.processing_parameters)
 		self.dc.set_name('aTest')
 		self.dc.set_number(0)
 		self.dc.experiment_type = qme.EXPERIMENT_TYPE.NATIVE
-		
+		self.fileinfo = {'directory':'/data/data1/visitor/mx20110291/20150814/RAW_DATA', 'prefix':'mx20110291', 'run_number': 1, 'process_directory': '/data/data1/visitor/mx20110291/20150814/PROCESSED_DATA'}
 		self.param_list = qmo.to_collect_dict(self.dc, self.session, self.sample)
 		print "###################################"
 		print "###################################"
@@ -283,7 +289,9 @@ class Collection():
 		#self.bl9113 = hwr.getObjectByRole("collect")
 		#self.bl9113.collect(COLLECTION_ORIGIN_STR.MXCUBE,self.param_list)
 		#or..
-		#self.collect_hwobj.collect(COLLECTION_ORIGIN_STR.MXCUBE,self.param_list)
+		self.collect_hwobj.collect(COLLECTION_ORIGIN_STR.MXCUBE,self.param_list)
+	def executeCharacterisation(self, *args):
+		pass
 
 class Characterisation():
 	def __init__(self):

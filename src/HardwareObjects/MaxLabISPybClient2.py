@@ -25,10 +25,10 @@ _WSDL_ROOT = ''
 _WS_BL_SAMPLE_URL = _WSDL_ROOT + 'ToolsForBLSampleWebService?wsdl'
 _WS_SHIPPING_URL = _WSDL_ROOT + 'ToolsForShippingWebService?wsdl'
 _WS_COLLECTION_URL = _WSDL_ROOT + 'ToolsForCollectionWebService?wsdl'
-#_WS_USERNAME = 'ispybadm'
-#_WS_PASSWORD = '1nv1$1ble'
-_WS_USERNAME = 'albnar'
-_WS_PASSWORD = 'abc123'
+_WS_USERNAME = 'ispybadm'
+_WS_PASSWORD = '1nv1$1ble'
+#_WS_USERNAME = 'albnar'
+#_WS_PASSWORD = 'abc123'
 
 
 _CONNECTION_ERROR_MSG = "Could not connect to ISPyB, please verify that " + \
@@ -114,16 +114,16 @@ class MaxLabISPybClient2(HardwareObject):
         
         logger = logging.getLogger('ispyb_client')
         
-        try:
-            formatter = \
-                logging.Formatter('%(asctime)s %(levelname)s %(message)s')
-            hdlr = logging.FileHandler('/home/blissadm/log/ispyb_client.log')
-            hdlr.setFormatter(formatter)
-            logger.addHandler(hdlr) 
-        except:
-            pass
+       # try:
+       #     formatter = \
+       #         logging.Formatter('%(asctime)s %(levelname)s %(message)s')
+       #     hdlr = logging.FileHandler('/home/blissadm/log/ispyb_client.log')
+       #     hdlr.setFormatter(formatter)
+       #     logger.addHandler(hdlr) 
+       # except:
+        #    pass
 
-        logger.setLevel(logging.INFO)
+       # logger.setLevel(logging.INFO)
 
       
     def init(self):
@@ -229,7 +229,7 @@ class MaxLabISPybClient2(HardwareObject):
 
         if not self.__shipping:
            logging.getLogger("ispyb_client").\
-                warning("Error in get_proposal: Could not connect to server," + \
+                debug("Error in get_proposal: Could not connect to server," + \
                           " returning empty proposal")
            return empty_dict
 
@@ -238,24 +238,24 @@ class MaxLabISPybClient2(HardwareObject):
             try:
                 person = self.__shipping.service.findPersonByLogin(username, os.environ["SMIS_BEAMLINE_NAME"])
             except WebFault, e:
-                logging.getLogger("ispyb_client").warning(e.message)
+                logging.getLogger("ispyb_client").debug(e.message)
                 person = {}
 
             try:
                 proposal = self.__shipping.service.findProposalByLoginAndBeamline(username, os.environ["SMIS_BEAMLINE_NAME"])
                 if not proposal:
-                    logging.getLogger("ispyb_client").warning("Error in get_proposal: No proposal has been found to  the user, returning empty proposal")
+                    logging.getLogger("ispyb_client").debug("Error in get_proposal: No proposal has been found to  the user, returning empty proposal")
                     return empty_dict
                 proposal_code   = proposal.code
                 proposal_number = proposal.number
             except WebFault, e:
-                logging.getLogger("ispyb_client").warning(e.message)
+                logging.getLogger("ispyb_client").debug(e.message)
                 proposal = {}
 
             try:
                 lab = self.__shipping.service.findLaboratoryByCodeAndNumber(proposal_code, proposal_number)
             except WebFault, e:
-                logging.getLogger("ispyb_client").warning(e.message)
+                logging.getLogger("ispyb_client").debug(e.message)
                 lab = {}
 
             try:
@@ -281,15 +281,15 @@ class MaxLabISPybClient2(HardwareObject):
                         sessions.append(utf_encode(asdict(session)))
 
             except WebFault, e:
-                logging.getLogger("ispyb_client").warning(e.message)
+                logging.getLogger("ispyb_client").debug(e.message)
                 sessions = []
 
         except URLError:
-            logging.getLogger("ispyb_client").warning(_CONNECTION_ERROR_MSG)
+            logging.getLogger("ispyb_client").debug(_CONNECTION_ERROR_MSG)
             return empty_dict
 
 
-        logging.getLogger("ispyb_client").info( str(sessions) )
+        logging.getLogger("ispyb_client").debug( str(sessions) )
         return  {'Proposal': utf_encode(asdict(proposal)),
                  'Person': utf_encode(asdict(person)),
                  'Laboratory': utf_encode(asdict(lab)),
@@ -569,9 +569,13 @@ class MaxLabISPybClient2(HardwareObject):
 
         :returns: None
         """  
+	print "*************************"
+	print "mx collection DATA"
+	print mx_collection
+ 	logging.getLogger("ispyb_client").debug("asdlfjksdh f")
         if self.__disabled:
             return
-
+	mx_collection['collection_id'] = 8818
         if self.__collection:
             if 'collection_id' in mx_collection:
                 try:
@@ -707,7 +711,7 @@ class MaxLabISPybClient2(HardwareObject):
                 exception("Error in store_image: could not connect to server")
 
         logging.getLogger("ispyb_client").\
-                info( " obtained samples from lims: " + str(response_samples) )
+                debug( " obtained samples from lims: " + str(response_samples) )
 
         return response_samples
 
@@ -1567,8 +1571,7 @@ class ISPyBValueFactory():
         data_collection.detector2theta = 0 
 
         try:
-            data_collection.dataCollectionId = \
-                int(mx_collect_dict['collection_id'])
+            data_collection.dataCollectionId = 6789#\int(mx_collect_dict['collection_id'])
         except KeyError:
             pass
 

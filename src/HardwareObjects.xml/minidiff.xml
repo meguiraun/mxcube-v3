@@ -1,11 +1,56 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <equipment class="MaxLabMicrodiff">
   <username>Minidiff</username>
+  <command version="130.235.94.114:kappa" type="spec" name="centerbeam">centerbeam</command>
+  <command version="130.235.94.114:kappa" type="spec" name="getBeamInfo">getMxBeamInfo9113</command>
+  <!--20140824 Jie, add MD2_phase for manual mounting samples--> 
+  <command version="130.235.94.114:kappa" type="spec" name="MD2_phase">microdiff_phase</command>
+  <command type="tango" name="save_centring_position" tangoname="i9113/MicroDiff/NewMD">saveCentringPositions</command>
   <device role="camera" hwrid="md_camera"></device>
+  <device role="sample_changer" hwrid="/cats"></device>
   <wagolight>/udiff_light</wagolight>
-  <device role="zoom" hwrid="/udiff_zoom"></device>
-  <device role="light" hwrid="/udiff_lightmot"></device>
-  <device role="backlight" hwrid="/udiff_light"></device> 
+  <aperture>/udiff_aperturemot</aperture>
+
+  <!--
+  <snapshotsDirectory>/data/id14darren/inhouse/snapshots</snapshotsDirectory>
+  --> 
+  <!--
+  <autoCentering>
+    <c3d>/users/blissadm/applications/c3d/c3d_search</c3d>
+    <imagesFolder>/data/id14darren/archive/C3D/input_images</imagesFolder>
+    <outputFolder>/data/id14darren/archive/C3D/output</outputFolder>
+    <maxhmove>1.1</maxhmove>
+    <maxvmove>1.1</maxvmove>
+    <debugLevel>1</debugLevel>
+    <start_phiz>-0.75</start_phiz>
+    <referencePosition>
+      <phiz delta="0.01">-3.16</phiz>
+      <focus delta="0.01">0.11</focus>
+      
+      <sampx delta="0.01">-2.2</sampx>
+      <sampy delta="0.01">0.2</sampy>
+    </referencePosition>
+  </autoCentering>
+  -->
+  
+  <referencePosition>
+    <phi delta="0.1">-7.8125e-05</phi>
+    <phiz delta="0.01">-3.16001</phiz>
+    <zoom delta="0.01"></zoom>
+    <light delta="0.01"></light>
+    <focus delta="0.01">0.0900333</focus>
+    <phiy delta="0.01">22</phiy>
+    <sampx delta="0.01">-2.50005</sampx>
+    <sampy delta="0.01">0.199946</sampy>
+    <bstopz delta="0.01">-67</bstopz>
+  </referencePosition>
+  <resetPosition>
+    <phiz>-6.2099</phiz>
+    <focus>-2.8843</focus>
+    <phiy>28.1351</phiy>
+    <sampx>-4.357</sampx>
+    <sampy>1.890</sampy>
+  </resetPosition>
   <motors>
     <phi>
       <device role="phi" hwrid="/udiff_omega"></device>  
@@ -35,4 +80,10 @@
       <device hwrid="/spec_mxCuBE/mkappa_z"></device>  
     </kappa>
   </motors>
+  <command>
+    <type>spec</type>
+    <version>130.235.94.114:kappa</version>
+    <name>Minikappa Load</name>
+    <toexecute>minikappa_load</toexecute>
+  </command>
 </equipment>

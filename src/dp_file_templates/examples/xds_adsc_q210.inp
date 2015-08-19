@@ -1,0 +1,62 @@
+! ispyb web service request time: {{"%.2f"|format(data.webservice_request_time)}}s
+! generated {{data.timestamp}}
+   
+   JOB= ALL !XYCORR INIT COLSPOT IDXREF DEFPIX XPLAN INTEGRATE CORRECT
+   !JOB= DEFPIX XPLAN INTEGRATE CORRECT
+   
+   DATA_RANGE= {{data.startImageNumber}} {{data.startImageNumber + data.numberOfImages - 1}}
+{%if data.numberOfImages >= 4 %}
+   BACKGROUND_RANGE= {{data.startImageNumber}} {{data.startImageNumber + 3}}
+   SPOT_RANGE= {{data.startImageNumber}} {{data.startImageNumber + 3}}
+{%else%}
+   BACKGROUND_RANGE= {{data.startImageNumber}} {{data.startImageNumber + data.numberOfImages - 1}}
+   SPOT_RANGE= {{data.startImageNumber}} {{data.startImageNumber + data.numberOfImages - 1}}
+{%endif%}
+   SPOT_RANGE= 1 20
+
+{%if data.numberOfImages >= 4 %}
+   SPOT_RANGE= {{data.startImageNumber + data.numberOfImages - 4}} {{data.startImageNumber + data.numberOfImages - 1}}
+{%endif%}
+   
+   SECONDS=60
+   MINIMUM_NUMBER_OF_PIXELS_IN_A_SPOT= 6
+   STRONG_PIXEL= 6.0
+   
+   OSCILLATION_RANGE= {{"%.4f"|format(data.axisRange)}}
+   STARTING_ANGLE= {{data.axisStart}}
+   STARTING_FRAME= {{data.startImageNumber}}
+   X-RAY_WAVELENGTH= {{"%.5f"|format(data.wavelength)}}
+   NAME_TEMPLATE_OF_DATA_FRAMES= {{data.fileTemplate}}
+   
+   !STARTING_ANGLES_OF_SPINDLE_ROTATION= 0 180 10 
+   !TOTAL_SPINDLE_ROTATION_RANGES= 60 180 10 
+   
+   DETECTOR_DISTANCE= {{"%.2f"|format(data.detectorDistance)}}
+   DETECTOR= {{data.detectorManufacturer|upper}} MINIMUM_VALID_PIXEL_VALUE= 1   OVERLOAD= 65000
+   ORGX= {{"%.2f"|format(data.ybeam / data.detectorPixelSizeVertical)}} ORGY= {{"%.2f"|format(data.xbeam / data.detectorPixelSizeHorizontal)}}
+   NX=  4096   NY=  4096   QX= {{"%.4f"|format(data.detectorPixelSizeHorizontal)}} QY= {{"%.4f"|format(data.detectorPixelSizeVertical)}}
+   VALUE_RANGE_FOR_TRUSTED_DETECTOR_PIXELS= 7000 30000
+   
+   DIRECTION_OF_DETECTOR_X-AXIS= 1.0 0.0 0.0
+   DIRECTION_OF_DETECTOR_Y-AXIS= 0.0 1.0 0.0
+   ROTATION_AXIS= 1.0 0.0 0.0
+   INCIDENT_BEAM_DIRECTION= 0.0 0.0 1.0
+   FRACTION_OF_POLARIZATION= {{"%.2f"|format(data.polarisation)}}
+   POLARIZATION_PLANE_NORMAL= 0.0 1.0 0.0
+   !== Default value recommended
+   !AIR= 0.00026895
+   
+   SPACE_GROUP_NUMBER= 0
+   UNIT_CELL_CONSTANTS= 0 0 0 0 0 0
+   INCLUDE_RESOLUTION_RANGE= 50.0 0.0
+   !RESOLUTION_SHELLS= 15.0 8.0 4.0 2.8 2.4
+   !FRIEDEL'S_LAW= FALSE
+ 
+   FRIEDEL'S_LAW= TRUE
+   TRUSTED_REGION= 0 1.40 
+   
+   REFINE(INTEGRATE)= BEAM ORIENTATION CELL
+   !== Default value recommended
+   !DELPHI= 3.000
+   MAXIMUM_NUMBER_OF_PROCESSORS= 16
+   !MAXIMUM_NUMBER_OF_JOBS= 16

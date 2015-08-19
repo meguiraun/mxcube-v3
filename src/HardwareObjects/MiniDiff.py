@@ -658,6 +658,7 @@ class MiniDiff(Equipment):
         if not lucid:
           logging.info("lucid not found")
           return
+
          
        # logging.info("lucid found %s" % (lucid))
 
@@ -675,12 +676,12 @@ class MiniDiff(Equipment):
 
 
           #JN,20141216,maxlab version for PAL camera
-          raw_data = str(myimage(self._drawing))
-          snapshot_filename = os.path.join(tempfile.gettempdir(), "mxcube_sample_snapshot.jpeg")
-          logging.info("snapshot_filename is %s" % (snapshot_filename))
-          f = open(snapshot_filename,"w")
-          f.write(raw_data)
-          f.close()
+          #raw_data = str(myimage(self._drawing))
+          #snapshot_filename = os.path.join(tempfile.gettempdir(), "mxcube_sample_snapshot.jpeg")
+          snapshot_filename = "/tmp/mxcube_sample_snapshot.jpeg"
+          logging.info("snapshot_filename is %s, zoom is %s" % (snapshot_filename, str(pixels_per_mm_horizontal)))
+          camera.takeSnapshot(snapshot_filename)
+         
 
           info, x, y = lucid.find_loop(snapshot_filename, pixels_per_mm_horizontal=pixels_per_mm_horizontal)
           
@@ -784,18 +785,23 @@ class MiniDiff(Equipment):
           #  centred = True
           #  break
 
+
+
         if centred:
           # move zoom
           self.emit("newAutomaticCentringPoint", (-1,-1))
           positions = zoom.getPredefinedPositionsList()
           i = len(positions) / 2
-          zoom.moveToPosition(positions[i-1])
+#          zoom.moveToPosition(positions[i-1]) # zoom 5
+          zoom.moveToPosition(positions[i-2]) # zoom 4 
+          
 
           #be sure zoom stop moving
           while zoom.motorIsMoving():
               time.sleep(0.1)
 
           self.pixelsPerMmY, self.pixelsPerMmZ = self.getCalibrationData(zoom.getPosition())
+
 
           # last centring
           #motor_pos = centre_loop(self.pixelsPerMmY, self.pixelsPerMmZ) 
@@ -930,6 +936,7 @@ class MiniDiff(Equipment):
         # if not centring_valid:
         #     logging.getLogger("HWR").error("MiniDiff: you must centre the crystal before taking the snapshots")
         # else:
+	logging.getLogger("HWR").info("MiniDiff Snapshots:")
         snapshotsProcedure = gevent.spawn(take_snapshots, self.lightWago, self.lightMotor ,self.phiMotor,self.zoomMotor,self._drawing)
         self.emit('centringSnapshots', (None,))
         self.emitProgressMessage("Taking snapshots")

@@ -1,0 +1,6 @@
+<device class = "Attenuators">
+  <username>Attenuators</username>
+  <specversion>bli9113-spec:kappa</specversion>
+  <command type="spec" name="setTransmission">setTransmission</command>
+  <channel type="spec" name="attfactor">ATT_FACTOR</channel>
+</device>

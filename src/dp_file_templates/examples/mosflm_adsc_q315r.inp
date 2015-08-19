@@ -1,0 +1,29 @@
+# generated from ispyb on {{data.timestamp}}
+# webservice call took {{data.webservice_request_time}}
+  # Detector type: ADSC Quantum Q315r
+  # User comments: Not yet in ispyb
+
+  #  Basic definitions
+   scanner ADSC
+   gain 0.4
+   synchrotron polar 0.99
+   dispersion  0.0002
+   divergence  0.001 0.001
+   genf genfile.gen
+
+  #  Better have them
+   wavelength  {{"%.6f"|format(data.wavelength)}}
+   distance    {{"%.2f"|format(data.detectorDistance)}}
+   beam   {{"%.2f"|format(data.xbeam)}} {{"%.2f"|format(data.ybeam)}}
+
+  #  Just a guess
+   mosaic  0.5
+
+  #  Files
+   directory  {{data.imageDirectory}}
+   template   {{data.fileTemplate}}
+   extension  {{data.imageSuffix}}
+   image {{data.startImageNumber}} phi {{data.axisStart}} to {{data.axisEnd}}
+   BEST ON
+   wait 60
+   go

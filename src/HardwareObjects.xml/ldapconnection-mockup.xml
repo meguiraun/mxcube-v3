@@ -1,0 +1,6 @@
+<procedure class="LdapLoginMockup">
+  <!--ldaphost>ldap.esrf.fr</ldaphost>
+  <ldapport>389</ldapport-->
+  <ldaphost>srvv-ldapdemo-1.maxlab.lu.se</ldaphost>
+  <ldapport>389</ldapport>
+</procedure>

@@ -162,9 +162,23 @@ class MaxLabMDCamera(BaseHardwareObjects.Device):
     def takeSnapshot(self, *args):
       #jpeg_data=self.device.GrabImage()
       jpeg_data=self.device.getImageJPG()
-      f = open(*(args + ("w",)))
+      #f = open(*(args + ("w",)))
+      #f.write("".join(map(chr, jpeg_data)))
+      #f.close()
+
+      # JN 20150206, have the same resolution as the one shown on the mxCuBE video
+      f = open("/tmp/mxcube_tmpSnapshot.jpeg","w")
       f.write("".join(map(chr, jpeg_data)))
       f.close()
+      img_tmp=Image.open("/tmp/mxcube_tmpSnapshot.jpeg").crop((55,42,714,535))
+      img_tmp.save("/tmp/mxcube_cropSnapshot.jpeg")
+      img=np.fromfile("/tmp/mxcube_cropSnapshot.jpeg",dtype="uint8")
+
+      f = open(*(args + ("w",)))
+      f.write("".join(map(chr, img)))
+      f.close()
+
+
 
     # def pollingTimer(self, interval, func):
     #     stopped = Event()

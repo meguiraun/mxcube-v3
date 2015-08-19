@@ -1,0 +1,52 @@
+<procedure class="ElementAnalysis">
+  <specversion>130.235.94.114:kappa</specversion>
+  <command>
+    <type>spec</type>
+    <name>setParameters</name>
+    <argument>
+      <name>range</name>
+      <type>integer</type>
+    </argument>
+    <argument>
+      <name>minEnergy</name>
+      <type>integer</type>
+    </argument>
+    <argument>
+      <name>maxEnergy</name>
+      <type>integer</type>
+    </argument>
+    <toexecute>mm_setup</toexecute>
+  </command>
+  <channel type="spec" name="mxdatax" dispatchMode="None">MXDATAX</channel>
+  <channel type="spec" name="mxdatay" dispatchMode="None">MXDATAY</channel>
+  <channel type="spec" name="updateGraph">START_ELANALYSIS_LOG</channel>
+  <channel type="spec" name="clfluorState">FLDET_STATE</channel>
+  <command>
+    <type>spec</type>
+    <name>doScan</name>
+    <argument>
+      <name>time</name>
+      <type>integer</type>
+    </argument>
+    <argument>
+      <name>startEnergy</name>
+      <type>integer</type>
+    </argument>
+    <argument>
+      <name>endEnergy</name>
+      <type>integer</type>
+    </argument>
+    <toexecute>mm_read</toexecute>
+  </command>
+  <command>
+    <type>spec</type>
+    <name>detectorIn</name>
+    <toexecute>fldetin</toexecute>
+  </command>
+  <command>
+    <type>spec</type>
+    <name>detectorOut</name>
+    <toexecute>fldetout</toexecute>
+  </command>
+</procedure>
+

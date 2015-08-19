@@ -1,0 +1,5 @@
+<device class="MicrodiffMotor">
+  <username>Attenuators</username>
+  <exporter_address>130.235.94.124:9001</exporter_address>
+  <motor_name>hsvg</motor_name>
+</device>

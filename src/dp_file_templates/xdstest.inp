@@ -1,0 +1,49 @@
+  DATA_RANGE= %(startImageNumber)d %(endImageNumber)s
+  BACKGROUND_RANGE= %(startImageNumber_bkg)d %(endImageNumber_bkg)s
+
+  SPOT_RANGE= %(startImageNumber_beg)d %(endImageNumber_beg)s
+  SPOT_RANGE= %(startImageNumber_end)d %(endImageNumber_end)s
+   
+  SECONDS=%(xdswait_exposure_time)s
+  MINIMUM_NUMBER_OF_PIXELS_IN_A_SPOT= 6
+  STRONG_PIXEL= 6.0
+   
+  OSCILLATION_RANGE= %(axisRange)s
+  STARTING_ANGLE= %(axisStart)s
+  STARTING_FRAME= %(startImageNumber)s
+  X-RAY_WAVELENGTH= %(wavelength).5f
+  NAME_TEMPLATE_OF_DATA_FRAMES= %(imageDirectory)s/%(fileTemplate)s
+     
+  !STARTING_ANGLES_OF_SPINDLE_ROTATION= 0 180 10 
+  !TOTAL_SPINDLE_ROTATION_RANGES= 60 180 10 
+     
+  DETECTOR_DISTANCE= %(detectorDistance).2f
+  DETECTOR= CCDCHESS MINIMUM_VALID_PIXEL_VALUE= 0   OVERLOAD= 65000
+  ORGX= %(ybeam_px).2f ORGY= %(xbeam_px).2f
+  NX=  3072   NY=  3072   QX= %(detectorPixelSizeHorizontal).4f QY= %(detectorPixelSizeVertical).4f
+  VALUE_RANGE_FOR_TRUSTED_DETECTOR_PIXELS= 7000 30000
+
+  DIRECTION_OF_DETECTOR_X-AXIS= 1.0 0.0 0.0
+  DIRECTION_OF_DETECTOR_Y-AXIS= 0.0 1.0 0.0
+  ROTATION_AXIS= 1.0 0.0 0.0
+  INCIDENT_BEAM_DIRECTION= 0.0 0.0 1.0
+  FRACTION_OF_POLARIZATION= 0.93
+  POLARIZATION_PLANE_NORMAL= 0.0 1.0 0.0
+  !== Default value recommended
+  !AIR= 0.00022347
+     
+  SPACE_GROUP_NUMBER= 0
+  UNIT_CELL_CONSTANTS= 0 0 0 0 0 0
+  INCLUDE_RESOLUTION_RANGE= 50.0 0.0
+  !RESOLUTION_SHELLS= 15.0 8.0 4.0 2.8 2.4
+  !FRIEDEL'S_LAW= FALSE
+   
+  FRIEDEL'S_LAW= TRUE
+  TRUSTED_REGION= 0 1.40 
+   
+  REFINE(INTEGRATE)= BEAM ORIENTATION CELL
+  !== Default value recommended
+  !DELPHI= 1.050
+  MAXIMUM_NUMBER_OF_PROCESSORS= 16
+  !MAXIMUM_NUMBER_OF_JOBS= 16
+

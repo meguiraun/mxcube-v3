@@ -287,8 +287,10 @@ class MAXLABMultiCollect(AbstractMultiCollect, HardwareObject):
 
     @task
     def set_transmission(self, transmission_percent):
+        #return
+        #JN,20150119 enable pseudo transmission
+        self.bl_control.transmission.setTransmission(transmission_percent)
         return
-        # self.bl_control.transmission.setTransmission(transmission_percent)
 
 
     def set_wavelength(self, wavelength):
@@ -437,12 +439,13 @@ class MAXLABMultiCollect(AbstractMultiCollect, HardwareObject):
           self.create_directories(dir)
           logging.info("Creating MOSFLM processing input file directory: %s", dir)
           os.chmod(dir, 0777)
-         
-        raw_hkl2000_dir = os.path.join(files_directory, "process", "hkl2000")
-        hkl2000_dir = os.path.join(process_directory, "hkl2000")
-        for dir in (raw_hkl2000_dir, hkl2000_dir):
-          self.create_directories(dir)
-          os.chmod(dir, 0777)
+        
+        #JN, 20140912, remove hkl2000 folder 
+        #raw_hkl2000_dir = os.path.join(files_directory, "process", "hkl2000")
+        #hkl2000_dir = os.path.join(process_directory, "hkl2000")
+        #for dir in (raw_hkl2000_dir, hkl2000_dir):
+        #  self.create_directories(dir)
+        #  os.chmod(dir, 0777)
  
         try: 
           try: 
@@ -618,11 +621,14 @@ class MAXLABMultiCollect(AbstractMultiCollect, HardwareObject):
         except:
           print "Cannot find template for stac input files "
           return
-        phi=self.bl_control.diffractometer.phiMotor.getPosition()
+       
+        omega=self.bl_control.diffractometer.phiMotor.getPosition()
+        kappa=self.bl_control.diffractometer.kappaMotor.getPosition()
+        phi=self.bl_control.diffractometer.kappaPhiMotor.getPosition()
         sampx=self.bl_control.diffractometer.sampleXMotor.getPosition()
         sampy=self.bl_control.diffractometer.sampleYMotor.getPosition()
         phiy=self.bl_control.diffractometer.phiyMotor.getPosition()
-        phi=self.bl_control.diffractometer.phiMotor.getPosition()
+       
          
         for stac_om_input_file_name, stac_om_dir in (("mosflm.descr", self.mosflm_directory), 
                                                      ("xds.descr", self.xds_directory),
@@ -644,9 +650,8 @@ class MAXLABMultiCollect(AbstractMultiCollect, HardwareObject):
           valdict = {
                   "omfilename":       om_filename,
                   "omtype":	      om_type,
-                  "axisStart":        osc_seq["start"],
-                  "kappaStart":       osc_seq["kappaStart"],
-                  "phiStart":         osc_seq["phiStart"],
+                  "omega":            omega,
+                  "kappa":            kappa,
                   "sampx":            sampx,
                   "sampy":            sampy,
                   "phiy":             phiy,
@@ -751,7 +756,9 @@ class MAXLABMultiCollect(AbstractMultiCollect, HardwareObject):
 
 
     def get_beam_centre(self):
-      return (self.execute_command("get_beam_centre_x"), self.execute_command("get_beam_centre_y"))
+ #JN,20140911, swap the beam centre X Y value, otherwise it is wrong in LIMS
+#      return (self.execute_command("get_beam_centre_x"), self.execute_command("get_beam_centre_y"))
+       return (self.execute_command("get_beam_centre_y"), self.execute_command("get_beam_centre_x"))
 
     
     def getBeamlineConfiguration(self, *args):

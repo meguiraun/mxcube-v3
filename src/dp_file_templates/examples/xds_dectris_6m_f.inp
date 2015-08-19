@@ -1,0 +1,92 @@
+! ispyb web service request time: {{"%.2f"|format(data.webservice_request_time)}}s
+! generated {{data.timestamp}}
+! params: raw_data={{data.raw_data}}, basedir={{data.basedir}}, request_basedir={{data.request_basedir}}
+
+   JOB= ALL !XYCORR INIT COLSPOT IDXREF DEFPIX XPLAN INTEGRATE CORRECT
+   !JOB= DEFPIX XPLAN INTEGRATE CORRECT
+   DATA_RANGE= {{data.startImageNumber}} {{data.startImageNumber + data.numberOfImages - 1}}
+   {%if data.numberOfImages >= 20 %}
+   SPOT_RANGE= {{data.startImageNumber}} {{"%d"|format(data.startImageNumber + 3/data.axisRange)}}
+   {%else%}
+   SPOT_RANGE= {{data.startImageNumber}} {{data.startImageNumber + data.numberOfImages - 1}}
+   {%endif%}
+   {%if data.additionalSpotRange is defined and data.numberOfImages >= 90%}
+   SPOT_RANGE= {{data.additionalSpotRange}}
+   {%endif%}
+   {%if data.numberOfImages >= 4 %}
+   BACKGROUND_RANGE= {{data.startImageNumber}} {{data.startImageNumber + 3}}
+   {%else%}
+   BACKGROUND_RANGE= {{data.startImageNumber}} {{data.startImageNumber + data.numberOfImages - 1}}
+   {%endif%}
+
+   !masking non sensitive area of Pilatus
+   UNTRUSTED_RECTANGLE= 487  495     0 2528
+   UNTRUSTED_RECTANGLE= 981  989     0 2528
+   UNTRUSTED_RECTANGLE=1475 1483     0 2528
+   UNTRUSTED_RECTANGLE=1969 1977     0 2528
+   UNTRUSTED_RECTANGLE=   0 2464   195  213
+   UNTRUSTED_RECTANGLE=   0 2464   407  425
+   UNTRUSTED_RECTANGLE=   0 2464   619  637
+   UNTRUSTED_RECTANGLE=   0 2464   831  849
+   UNTRUSTED_RECTANGLE=   0 2464  1043 1061
+   UNTRUSTED_RECTANGLE=   0 2464  1255 1273
+   UNTRUSTED_RECTANGLE=   0 2464  1467 1485
+   UNTRUSTED_RECTANGLE=   0 2464  1679 1697
+   UNTRUSTED_RECTANGLE=   0 2464  1891 1909
+   UNTRUSTED_RECTANGLE=   0 2464  2103 2121
+   UNTRUSTED_RECTANGLE=   0 2464  2315 2333
+   TRUSTED_REGION=0.0 1.41 !Relative radii limiting trusted detector region
+
+   !correction tables to compensate the misorientations of the modules
+{%if data.raw_data%}
+   X-GEO_CORR= ../x_geo_corr.cbf
+   Y-GEO_CORR= ../y_geo_corr.cbf
+{%else%}
+   X-GEO_CORR= /data/id29/inhouse/opid291/x_geo_corr.cbf.bz2
+   Y-GEO_CORR= /data/id29/inhouse/opid291/y_geo_corr.cbf.bz2
+{%endif%}
+
+   SECONDS=600
+   MINIMUM_NUMBER_OF_PIXELS_IN_A_SPOT= 3
+
+   !STRONG_PIXEL= 3.0
+
+   OSCILLATION_RANGE= {{"%.4f"|format(data.axisRange)}}
+   STARTING_ANGLE= {{data.axisStart}}
+   STARTING_FRAME= {{data.startImageNumber}}
+   X-RAY_WAVELENGTH=  {{"%.5f"|format(data.wavelength)}}
+   NAME_TEMPLATE_OF_DATA_FRAMES= {{data.fileTemplate}} !CBF
+
+   !STARTING_ANGLES_OF_SPINDLE_ROTATION= 0 180 10
+   !TOTAL_SPINDLE_ROTATION_RANGES= 60 180 10
+
+   DETECTOR_DISTANCE= {{"%.2f"|format(data.detectorDistance)}}
+   DETECTOR= PILATUS MINIMUM_VALID_PIXEL_VALUE= 0.0 OVERLOAD= 1048500
+
+
+   SENSOR_THICKNESS=0.32
+   ORGX= {{"%.2f"|format(data.ybeam / data.detectorPixelSizeVertical)}} ORGY= {{"%.2f"|format(data.xbeam / data.detectorPixelSizeHorizontal)}}
+   NX= 2463 NY= 2527
+   QX= {{"%.4f"|format(data.detectorPixelSizeHorizontal)}}  QY= {{"%.4f"|format(data.detectorPixelSizeVertical)}}
+   VALUE_RANGE_FOR_TRUSTED_DETECTOR_PIXELS= 7000 30000
+
+   DIRECTION_OF_DETECTOR_X-AXIS= 1.0 0.0 0.0
+   DIRECTION_OF_DETECTOR_Y-AXIS= 0.0 1.0 0.0
+   ROTATION_AXIS= 1.0 0.0 0.0
+   INCIDENT_BEAM_DIRECTION= 0.0 0.0 1.0
+   FRACTION_OF_POLARIZATION= {{"%.2f" | format(data.polarisation)}}
+   POLARIZATION_PLANE_NORMAL= 0.0 1.0 0.0
+   !AIR= %.8f
+
+   SPACE_GROUP_NUMBER= 0
+   UNIT_CELL_CONSTANTS= 0 0 0 0 0 0
+   INCLUDE_RESOLUTION_RANGE= 50.0 0.0
+   !RESOLUTION_SHELLS= 15.0 8.0 4.0 2.8 2.4
+   !FRIEDEL'S_LAW= FALSE !default is TRUE
+   !STRICT_ABSORPTION_CORRECTION=TRUE
+
+   REFINE(INTEGRATE)= BEAM ORIENTATION CELL
+   !== Default value recommended
+   !DELPHI= %.3f
+   MAXIMUM_NUMBER_OF_PROCESSORS= 16
+   !MAXIMUM_NUMBER_OF_JOBS= 16

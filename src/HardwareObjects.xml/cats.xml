@@ -34,5 +34,7 @@
   <channel type="tango" name="_chnSampleIsDetected" polling="events">di_PRI2_API</channel>
   <channel type="tango" name="_chnPowered" polling="events">Powered</channel>
   <command type="tango" name="_cmdRestartMD2" tangoname="i9113/MicroDiff/NewMD">restart</command>
+  <channel type="tango" name="_chnCurrentPhase" tangoname="i9113/microdiff/newmd" polling="events">CurrentPhase</channel>
+  <channel type="tango" name="_chnTransferMode" tangoname="i9113/microdiff/newmd" polling="events">TransferMode</channel>
 </equipment>
 

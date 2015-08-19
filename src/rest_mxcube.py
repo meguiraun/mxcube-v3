@@ -6,7 +6,37 @@ import gevent
 import gevent.event
 from gevent import monkey; monkey.patch_all()
 import os, RestParser
+import logging
 
+logging.basicConfig(level=logging.DEBUG,
+                    format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
+                    datefmt='%m-%d %H:%M',
+                    filename='mxCuBE-v3.log',
+                    filemode='w')
+console = logging.StreamHandler()
+console.setLevel(logging.DEBUG)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+console.setFormatter(formatter)
+logging.getLogger('').addHandler(console)
+
+
+logger = logging.getLogger('HWR')
+logger.setLevel(logging.DEBUG)
+
+#loggerIspyb =logging.getLogger('ispyb_client')
+#logger.setLevel(logging.DEBUG)
+#fh = logging.FileHandler('mxCuBE-v3.log')
+#fh.setLevel(logging.DEBUG)
+#ch = logging.StreamHandler()
+#ch.setLevel(logging.DEBUG)
+
+#formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+#fh.setFormatter(formatter)
+#ch.setFormatter(formatter)
+#logger.addHandler(fh)
+#logger.addHandler(ch)
+
+logger.info('Mxcube rest server init')
 session_opts = {
     'session.type': 'file',
     'session.cookie_expires': 300,

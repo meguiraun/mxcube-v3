@@ -2,6 +2,7 @@
   <specversion>bli9113-spec:kappa</specversion>
   
   <object href="/lims" role="dbserver"/>
+  <object href="/attenuators"  role="transmission"/>
   <!--object href="/safshut"      role="safety_shutter"/>
   <object href="/sc"           role="sample_changer"/>
   <object href="/attenuators"  role="transmission"/>
@@ -13,7 +14,7 @@
 
   <object href="/mxlocal"          role="beamline_configuration"/>
   <object href="/minidiff"            role="diffractometer"/>
-  <!-- <object href="/energyscan"       role="energy"/> -->
+  <object href="/energyscan"       role="energy"/>
   <object href="/spec_mxCuBE/dtox" role="detector_distance"/>
   <object href="/spec_mxCuBE/res"  role="resolution"/>
 
@@ -48,11 +49,12 @@
   <channel type="spec" name="parameters">datacollection_parameters</channel>
   <channel type="spec" name="take_dark">MXCOLLECT_PARS/TakeDarkFlag</channel>
   <channel type="spec" name="spec_messages">eprodc_log_message</channel>
+
   <!--channel type="spec" name="image_intensity">CURRENT_IMAGE_INTENSITY</channel>
-  <channel type="spec" name="xds_filename">XDS_INPUT_FILENAME</channel>
+  <channel type="spec" name="xds_filename">XDS_INPUT_FILENAME</channel-->
   <channel type="spec" name="helical">HELICAL_OSCIL</channel>
   <channel type="spec" name="helical_pos">HELICAL_OSCIL_POS</channel>
-  <channel type="spec" name="helical_pars">HELICAL_PARS</channel-->
+  <channel type="spec" name="helical_pars">HELICAL_PARS</channel>
   <auto_processing>
      <program>
         <executable>/usr/local/xtal/autoproc/autoproc_master.pl</executable>
@@ -60,7 +62,7 @@
      </program>
      <program>
         <executable>/home/blissadm/bin/autoproc-launcher.py</executable>
-        <event>before</event>
+        <event>after</event>
      </program>
   </auto_processing>
 

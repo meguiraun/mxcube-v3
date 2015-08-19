@@ -1,0 +1,28 @@
+# generated from mxcube 
+  # Detector type: MAR225
+  # User comments: %(user_comment)s
+
+  #  Basic definitions
+   scanner MARCCD
+   gain 0.4
+   synchrotron polar 0.99
+   dispersion  0.0002
+   divergence  0.001 0.001
+   genf genfile.gen
+
+  #  Better have them
+   wavelength  %(wavelength).6f
+   distance    %(detectorDistance).2f
+   beam   %(xbeam).2f %(ybeam).2f
+
+  #  Just a guess
+   mosaic  0.5
+
+  #  Files
+   directory  %(imageDirectory)s
+   template   %(fileTemplate)s
+   extension  %(imageSuffix)s
+   image %(startImageNumber)d phi %(axisStart).2f to %(axisEnd).2f
+   BEST ON
+   wait 60
+   go
