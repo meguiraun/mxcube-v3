@@ -5,6 +5,7 @@ import gevent
 import gevent.monkey
 import numpy
 import types
+import time
 
 POLLERS = {}
 
@@ -33,8 +34,8 @@ def poll(polled_call, polled_call_args=(), polling_period=1000, value_changed_ca
              poller.set_polling_period(min(polling_period, poller.get_polling_period()))
              return poller
             
-     #logging.info(">>>>> CREATING NEW POLLER for cmd %r, args=%s, polling time=%d", polled_call, polled_call_args, polling_period)
      poller = _Poller(polled_call, polled_call_args, polling_period, value_changed_callback, error_callback, compare)
+
      poller.old_res = start_value
      POLLERS[poller.get_id()] = poller
      poller.start_delayed(start_delay)
@@ -79,7 +80,6 @@ class _Poller:
 
 
     def set_polling_period(self, polling_period):
-        #logging.info(">>>>> CHANGIG POLLING PERIOD TO %d", polling_period)
         self.polling_period = polling_period
 
 
@@ -111,7 +111,11 @@ class _Poller:
 
 
     def run(self):
-        sleep = gevent.monkey._get_original("time", ["sleep"])[0]
+        try:
+           sleep = gevent.monkey.get_original("time", ["sleep"])[0]
+        except:
+           import traceback
+           logging.info( traceback.format_exc() )
 
         self.async_watcher.start(self.new_event)
         err_callback_args = None 
@@ -120,7 +124,7 @@ class _Poller:
  
         while not self.stop_event.is_set():
             if first_run and self.delay:
-                sleep(self.delay / 1000.0)
+                time.sleep(self.delay / 1000.0)
             first_run = False            
 
             if self.stop_event.is_set():

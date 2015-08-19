@@ -10,21 +10,23 @@ class Attenuators(Device):
         self.bits    = []
         self.attno   = 0
         self.getValue = self.get_value 
-        self.attState = 0       
+       
 
     def init(self):
-        cmdToggle = self.getCommandObject('toggle')
-        cmdToggle.connectSignal('connected', self.connected)
-        cmdToggle.connectSignal('disconnected', self.disconnected)
-        self.chanAttState = self.getChannelObject('attstate')
-        self.chanAttState.connectSignal('update', self.attStateChanged)
+#20150119,JN for maxlab i9113
+#        cmdToggle = self.getCommandObject('toggle')
+#        cmdToggle.connectSignal('connected', self.connected)
+#        cmdToggle.connectSignal('disconnected', self.disconnected)
+#        self.chanAttState = self.getChannelObject('attstate')
+#        self.chanAttState.connectSignal('update', self.attStateChanged)
         self.chanAttFactor = self.getChannelObject('attfactor')
         self.chanAttFactor.connectSignal('update', self.attFactorChanged)
         
-        if cmdToggle.isConnected():
-            self.connected()
-            
-        self.getAtteConfig()
+#        if cmdToggle.isConnected():
+#            self.connected()
+        self.connected() # 20150119,JN for maxlab i9113
+   
+#        self.getAtteConfig()  #20150119,JN for maxlab i9113
 
     
     def getAtteConfig(self):
@@ -68,11 +70,11 @@ class Attenuators(Device):
 
     def attStateChanged(self, channelValue):
         try:
-            self.attState = int(channelValue)
+            value = int(channelValue)
         except:
             logging.getLogger("HWR").error('%s: received value on channel is not an integer value', str(self.name())) 
         else:
-            self.emit('attStateChanged', (self.attState, ))
+            self.emit('attStateChanged', (value, ))
 
 
     def attFactorChanged(self, channelValue):
@@ -82,9 +84,4 @@ class Attenuators(Device):
             logging.getLogger("HWR").error('%s: received value on channel is not a float value', str(self.name()))
         else:
             self.emit('attFactorChanged', (value, )) 
-
   	      
-    def is_in(self, attenuator_index):
-        curr_bits = self.getAttState()
-        val = self.bits[attenuator_index]
-        return bool(val & curr_bits)

@@ -32,7 +32,6 @@ class InOut(Device):
             self.private = ast.literal_eval(private)
 
     def _setReady(self):
-        #logging.getLogger().info("---------------------------- %s %s %s", self.set_in, self.statechan.isConnected(), self.set_in.isConnected())
         self.setIsReady(self.statechan.isConnected() and self.set_in.isConnected())
 
 

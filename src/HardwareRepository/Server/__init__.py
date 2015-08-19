@@ -2,6 +2,7 @@ import types
 import socket
 import os
 import stat
+import logging
 import xml.sax
 from xml.sax import SAXParseException
 from xml.sax.xmlreader import AttributesImpl
@@ -416,6 +417,8 @@ class SpecServerConnection(SpecServer.BaseSpecRequestHandler):
                 
 class HardwareRepositorySpecServer(SpecServer.SpecServer):
      def __init__(self, *args):
+         logging.info("******************* creating hardware repository server *********************")
+         
          SpecServer.SpecServer.__init__(self, handler = SpecServerConnection, *args)
          
          self.hardwareRepositoryDirectory = None
@@ -428,6 +431,7 @@ class HardwareRepositorySpecServer(SpecServer.SpecServer):
 
 
      def setDirectory(self, dir):
+          logging.info("******************* setting hwr directory to %s*********************" % str(dir))
           if os.path.exists(dir):
                self.hardwareRepositoryDirectory = dir
           else:
@@ -440,6 +444,8 @@ class HardwareRepositorySpecServer(SpecServer.SpecServer):
           Return :
           the dictionary of all the XML files found. Keys are the corresponding Hardware Object names.
           """
+          logging.info("******************* " + str(self.hardwareRepositoryDirectory) + "*********************")
+
           if self.hardwareRepositoryDirectory is not None: 
                baseDir = self.hardwareRepositoryDirectory
                hardwareObjectFilenames = {}

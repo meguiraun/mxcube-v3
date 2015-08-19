@@ -85,30 +85,25 @@ class __HardwareRepositoryClient:
         self.serverAddress = serverAddress
         self.requiredHardwareObjects = {}
         self.xml_source={}
-        self.__connected = False
         
     def connect(self):
-        if self.__connected:
-            return
-        try:
-            self.invalidHardwareObjects = set()
-            self.hardwareObjects = weakref.WeakValueDictionary()
+        self.invalidHardwareObjects = set()
+        self.hardwareObjects = weakref.WeakValueDictionary()
 
-            if type(self.serverAddress)==types.StringType:
-                mngr = SpecConnectionsManager.SpecConnectionsManager() 
+        if type(self.serverAddress)==types.StringType:
+            mngr = SpecConnectionsManager.SpecConnectionsManager() 
 
-                self.server = mngr.getConnection(self.serverAddress)
+            self.server = mngr.getConnection(self.serverAddress)
       
-                with gevent.Timeout(3): 
-                    while not self.server.isSpecConnected():
-                        time.sleep(0.5) 
+            with gevent.Timeout(3): 
+                while not self.server.isSpecConnected():
+                    time.sleep(0.5) 
+            #SpecWaitObject.waitConnection(self.server, timeout = 3) 	 
    
-                # in case of update of a Hardware Object, we discard it => bricks will receive a signal and can reload it
-                self.server.registerChannel("update", self.discardHardwareObject, dispatchMode=SpecEventsDispatcher.FIREEVENT)
-            else:
-                self.server = None
-        finally:
-            self.__connected = True
+            # in case of update of a Hardware Object, we discard it => bricks will receive a signal and can reload it
+            self.server.registerChannel("update", self.discardHardwareObject, dispatchMode=SpecEventsDispatcher.FIREEVENT)
+        else:
+            self.server = None
  
 
     def require(self, mnemonicsList):
@@ -369,9 +364,6 @@ class __HardwareRepositoryClient:
         Return :
           the required Hardware Object
         """
-        if not objectName.startswith("/"):
-            objectName="/"+objectName
-
         try:
             if objectName:
                 if objectName in self.invalidHardwareObjects:
